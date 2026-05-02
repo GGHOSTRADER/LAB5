@@ -1,0 +1,6 @@
+torch
+gymnasium[atari,accept-rom-license]
+ale-py
+numpy
+opencv-python
+wandb

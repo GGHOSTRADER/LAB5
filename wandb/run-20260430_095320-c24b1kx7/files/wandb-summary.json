@@ -1,0 +1,1 @@
+{"Eval Reward":500,"Q std":16.285940170288086,"Total Reward":500,"Update Count":724640,"_timestamp":1.777559073838527e+09,"_runtime":1870,"Loss":0.11440768837928772,"Epsilon":0.009997793671595201,"TD error abs mean":0.2572176456451416,"_step":4602,"Env Step Count":729639,"Step Count":361,"Episode":2999,"Q mean":97.57235717773438,"_wandb":{"runtime":1870}}

@@ -1,0 +1,52 @@
+
+command to run CartPole
+Bash
+python dqn.py --env-type cartpole --env-name CartPole-v1 \
+  --wandb-project DLP-Lab5-DQN-CartPole --wandb-run-name cartpole-vanilla
+
+PowerShell
+python dqn.py --env-type cartpole --env-name CartPole-v1 --wandb-project DLP-Lab5-DQN-CartPole --wandb-run-name cartpole-vanilla
+
+command to run Pong
+Bash
+
+
+PowerShell
+
+python dqn.py --env-name ALE/Pong-v5 --wandb-project DLP-Lab5-DQN-Pong --wandb-run-name pong-vanilla --save-dir ./results_pong --lr 1e-4 --batch-size 32 --discount-factor 0.99 --memory-size 100000 --replay-start-size 20000 --target-update-frequency 10000 --train-frequency 4 --train-per-step 1 --epsilon-schedule linear --epsilon-start 1.0 --epsilon-min 0.05 --epsilon-decay-steps 1000000 --episodes 5000 --max-episode-steps 27000
+
+
+python dqn.py `
+  --env-name ALE/Pong-v5 `
+  --wandb-project DLP-Lab5-DQN-Pong `
+  --wandb-run-name pong-vanilla `
+  --save-dir ./results_pong `
+  --lr 1e-4 `
+  --batch-size 32 `
+  --discount-factor 0.99 `
+  --memory-size 100000 `
+  --replay-start-size 20000 `
+  --target-update-frequency 10000 `
+  --train-frequency 4 `
+  --train-per-step 1 `
+  --epsilon-schedule linear `
+  --epsilon-start 1.0 `
+  --epsilon-min 0.05 `
+  --epsilon-decay-steps 1000000 `
+  --episodes 5000 `
+  --max-episode-steps 27000
+
+
+  TEST
+python dqn.py --env-name ALE/Pong-v5 `
+  --wandb-run-name pong-final-score-19 `
+  --save-dir ./results_pong_final `
+  --lr 1e-4 `
+  --batch-size 128 `
+  --memory-size 200000 `
+  --replay-start-size 10000 `
+  --target-update-frequency 2000 `
+  --epsilon-start 1.0 `
+  --epsilon-min 0.01 `
+  --epsilon-decay 0.99999 `
+  --episodes 10000

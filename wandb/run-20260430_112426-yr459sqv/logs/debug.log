@@ -1,0 +1,21 @@
+2026-04-30 11:24:26,503 INFO    MainThread:46984 [wandb_setup.py:_flush():81] Current SDK version is 0.26.1
+2026-04-30 11:24:26,503 INFO    MainThread:46984 [wandb_setup.py:_flush():81] Configure stats pid to 46984
+2026-04-30 11:24:26,503 INFO    MainThread:46984 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-04-30 11:24:26,503 INFO    MainThread:46984 [wandb_init.py:setup_run_log_directory():723] Logging user logs to C:\Users\g_med\python_new\LAB3\wandb\run-20260430_112426-yr459sqv\logs\debug.log
+2026-04-30 11:24:26,504 INFO    MainThread:46984 [wandb_init.py:setup_run_log_directory():724] Logging internal logs to C:\Users\g_med\python_new\LAB3\wandb\run-20260430_112426-yr459sqv\logs\debug-internal.log
+2026-04-30 11:24:26,505 INFO    MainThread:46984 [wandb_init.py:init():850] calling init triggers
+2026-04-30 11:24:26,505 INFO    MainThread:46984 [wandb_init.py:init():855] wandb.init called with sweep_config: {}
+config: {'env_name': 'CartPole-v1', 'save_dir': './results', 'wandb_run_name': 'cartpole-v5', 'batch_size': 128, 'memory_size': 100000, 'lr': 0.0003, 'discount_factor': 0.99, 'epsilon_start': 1.0, 'epsilon_decay': 0.9997, 'epsilon_min': 0.01, 'target_update_frequency': 2000, 'replay_start_size': 5000, 'max_episode_steps': 10000, 'train_per_step': 1, 'episodes': 3000, '_wandb': {'code_path': 'code/dqn.py'}}
+2026-04-30 11:24:26,505 INFO    MainThread:46984 [wandb_init.py:init():898] starting backend
+2026-04-30 11:24:28,784 INFO    MainThread:46984 [wandb_init.py:init():913] sending inform_init request
+2026-04-30 11:24:29,127 INFO    MainThread:46984 [wandb_init.py:init():918] backend started and connected
+2026-04-30 11:24:29,140 INFO    MainThread:46984 [wandb_init.py:init():988] updated telemetry
+2026-04-30 11:24:29,142 INFO    MainThread:46984 [wandb_init.py:init():1011] communicating run to backend with 90.0 second timeout
+2026-04-30 11:24:29,686 INFO    MainThread:46984 [wandb_init.py:init():1056] starting run threads in backend
+2026-04-30 11:24:29,728 INFO    MainThread:46984 [wandb_run.py:_console_start():2554] atexit reg
+2026-04-30 11:24:29,728 INFO    MainThread:46984 [wandb_run.py:_redirect():2403] redirect: wrap_raw
+2026-04-30 11:24:29,729 INFO    MainThread:46984 [wandb_run.py:_redirect():2472] Wrapping output streams.
+2026-04-30 11:24:29,729 INFO    MainThread:46984 [wandb_run.py:_redirect():2495] Redirects installed.
+2026-04-30 11:24:29,732 INFO    MainThread:46984 [wandb_init.py:init():1094] run started, returning control to user process
+2026-04-30 11:41:23,052 INFO    wandb-AsyncioManager-main:46984 [service_client.py:_forward_responses():134] Reached EOF.
+2026-04-30 11:41:23,052 INFO    wandb-AsyncioManager-main:46984 [mailbox.py:close():155] Closing mailbox, abandoning 1 handles.

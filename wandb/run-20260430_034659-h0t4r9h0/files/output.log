@@ -1,0 +1,745 @@
+[Init] env=CartPole-v1 type=cartpole device=cuda
+[Eval] Ep:0 TotalReward:18.0 SC:18 UC:0 Eps:1.0000
+Saved checkpoint -> ./results\model_ep0.pt
+New best -> ./results\best_model.pt reward=54.0
+[TrueEval] Ep:0 EvalReward:54.00
+[Eval] Ep:1 TotalReward:21.0 SC:39 UC:0 Eps:1.0000
+[Eval] Ep:2 TotalReward:16.0 SC:55 UC:0 Eps:1.0000
+[Eval] Ep:3 TotalReward:19.0 SC:74 UC:0 Eps:1.0000
+[Eval] Ep:4 TotalReward:19.0 SC:93 UC:0 Eps:1.0000
+[Eval] Ep:5 TotalReward:19.0 SC:112 UC:0 Eps:1.0000
+[Eval] Ep:6 TotalReward:15.0 SC:127 UC:0 Eps:1.0000
+[Eval] Ep:7 TotalReward:22.0 SC:149 UC:0 Eps:1.0000
+[Eval] Ep:8 TotalReward:44.0 SC:193 UC:0 Eps:1.0000
+[Eval] Ep:9 TotalReward:25.0 SC:218 UC:0 Eps:1.0000
+[Eval] Ep:10 TotalReward:20.0 SC:238 UC:0 Eps:1.0000
+[Eval] Ep:11 TotalReward:29.0 SC:267 UC:0 Eps:1.0000
+[Eval] Ep:12 TotalReward:11.0 SC:278 UC:0 Eps:1.0000
+[Eval] Ep:13 TotalReward:20.0 SC:298 UC:0 Eps:1.0000
+[Eval] Ep:14 TotalReward:16.0 SC:314 UC:0 Eps:1.0000
+[Eval] Ep:15 TotalReward:15.0 SC:329 UC:0 Eps:1.0000
+[Eval] Ep:16 TotalReward:14.0 SC:343 UC:0 Eps:1.0000
+[Eval] Ep:17 TotalReward:16.0 SC:359 UC:0 Eps:1.0000
+[Eval] Ep:18 TotalReward:15.0 SC:374 UC:0 Eps:1.0000
+[Eval] Ep:19 TotalReward:40.0 SC:414 UC:0 Eps:1.0000
+[Eval] Ep:20 TotalReward:19.0 SC:433 UC:0 Eps:1.0000
+New best -> ./results\best_model.pt reward=145.0
+[TrueEval] Ep:20 EvalReward:145.00
+[Eval] Ep:21 TotalReward:13.0 SC:446 UC:0 Eps:1.0000
+[Eval] Ep:22 TotalReward:14.0 SC:460 UC:0 Eps:1.0000
+[Eval] Ep:23 TotalReward:14.0 SC:474 UC:0 Eps:1.0000
+[Eval] Ep:24 TotalReward:17.0 SC:491 UC:0 Eps:1.0000
+[Eval] Ep:25 TotalReward:29.0 SC:520 UC:0 Eps:1.0000
+[Eval] Ep:26 TotalReward:14.0 SC:534 UC:0 Eps:1.0000
+[Eval] Ep:27 TotalReward:17.0 SC:551 UC:0 Eps:1.0000
+[Eval] Ep:28 TotalReward:34.0 SC:585 UC:0 Eps:1.0000
+[Eval] Ep:29 TotalReward:29.0 SC:614 UC:0 Eps:1.0000
+[Eval] Ep:30 TotalReward:13.0 SC:627 UC:0 Eps:1.0000
+[Eval] Ep:31 TotalReward:36.0 SC:663 UC:0 Eps:1.0000
+[Eval] Ep:32 TotalReward:14.0 SC:677 UC:0 Eps:1.0000
+[Eval] Ep:33 TotalReward:19.0 SC:696 UC:0 Eps:1.0000
+[Eval] Ep:34 TotalReward:19.0 SC:715 UC:0 Eps:1.0000
+[Eval] Ep:35 TotalReward:13.0 SC:728 UC:0 Eps:1.0000
+[Eval] Ep:36 TotalReward:20.0 SC:748 UC:0 Eps:1.0000
+[Eval] Ep:37 TotalReward:18.0 SC:766 UC:0 Eps:1.0000
+[Eval] Ep:38 TotalReward:32.0 SC:798 UC:0 Eps:1.0000
+[Eval] Ep:39 TotalReward:17.0 SC:815 UC:0 Eps:1.0000
+[Eval] Ep:40 TotalReward:12.0 SC:827 UC:0 Eps:1.0000
+[TrueEval] Ep:40 EvalReward:145.00
+[Eval] Ep:41 TotalReward:10.0 SC:837 UC:0 Eps:1.0000
+[Eval] Ep:42 TotalReward:9.0 SC:846 UC:0 Eps:1.0000
+[Eval] Ep:43 TotalReward:27.0 SC:873 UC:0 Eps:1.0000
+[Eval] Ep:44 TotalReward:11.0 SC:884 UC:0 Eps:1.0000
+[Eval] Ep:45 TotalReward:11.0 SC:895 UC:0 Eps:1.0000
+[Eval] Ep:46 TotalReward:13.0 SC:908 UC:0 Eps:1.0000
+[Eval] Ep:47 TotalReward:18.0 SC:926 UC:0 Eps:1.0000
+[Eval] Ep:48 TotalReward:13.0 SC:939 UC:0 Eps:1.0000
+[Eval] Ep:49 TotalReward:54.0 SC:993 UC:0 Eps:1.0000
+[Collect] Ep:50 Step:7 SC:1000 UC:1 Eps:0.9995
+[Eval] Ep:50 TotalReward:16.0 SC:1009 UC:10 Eps:0.9950
+[Eval] Ep:51 TotalReward:12.0 SC:1021 UC:22 Eps:0.9891
+[Eval] Ep:52 TotalReward:10.0 SC:1031 UC:32 Eps:0.9841
+[Eval] Ep:53 TotalReward:21.0 SC:1052 UC:53 Eps:0.9738
+[Eval] Ep:54 TotalReward:12.0 SC:1064 UC:65 Eps:0.9680
+[Eval] Ep:55 TotalReward:20.0 SC:1084 UC:85 Eps:0.9584
+[Eval] Ep:56 TotalReward:34.0 SC:1118 UC:119 Eps:0.9422
+[Eval] Ep:57 TotalReward:50.0 SC:1168 UC:169 Eps:0.9190
+[Eval] Ep:58 TotalReward:13.0 SC:1181 UC:182 Eps:0.9130
+[Eval] Ep:59 TotalReward:23.0 SC:1204 UC:205 Eps:0.9026
+[Eval] Ep:60 TotalReward:46.0 SC:1250 UC:251 Eps:0.8820
+[TrueEval] Ep:60 EvalReward:9.00
+[Eval] Ep:61 TotalReward:16.0 SC:1266 UC:267 Eps:0.8750
+[Eval] Ep:62 TotalReward:20.0 SC:1286 UC:287 Eps:0.8663
+[Eval] Ep:63 TotalReward:20.0 SC:1306 UC:307 Eps:0.8577
+[Eval] Ep:64 TotalReward:14.0 SC:1320 UC:321 Eps:0.8517
+[Eval] Ep:65 TotalReward:17.0 SC:1337 UC:338 Eps:0.8445
+[Eval] Ep:66 TotalReward:14.0 SC:1351 UC:352 Eps:0.8386
+[Eval] Ep:67 TotalReward:14.0 SC:1365 UC:366 Eps:0.8327
+[Eval] Ep:68 TotalReward:14.0 SC:1379 UC:380 Eps:0.8269
+[Eval] Ep:69 TotalReward:15.0 SC:1394 UC:395 Eps:0.8207
+[Eval] Ep:70 TotalReward:8.0 SC:1402 UC:403 Eps:0.8175
+[Eval] Ep:71 TotalReward:26.0 SC:1428 UC:429 Eps:0.8069
+[Eval] Ep:72 TotalReward:13.0 SC:1441 UC:442 Eps:0.8017
+[Eval] Ep:73 TotalReward:11.0 SC:1452 UC:453 Eps:0.7973
+[Eval] Ep:74 TotalReward:19.0 SC:1471 UC:472 Eps:0.7897
+[Eval] Ep:75 TotalReward:17.0 SC:1488 UC:489 Eps:0.7830
+[Eval] Ep:76 TotalReward:13.0 SC:1501 UC:502 Eps:0.7780
+[Eval] Ep:77 TotalReward:17.0 SC:1518 UC:519 Eps:0.7714
+[Eval] Ep:78 TotalReward:11.0 SC:1529 UC:530 Eps:0.7672
+[Eval] Ep:79 TotalReward:12.0 SC:1541 UC:542 Eps:0.7626
+[Eval] Ep:80 TotalReward:18.0 SC:1559 UC:560 Eps:0.7557
+[TrueEval] Ep:80 EvalReward:10.00
+[Eval] Ep:81 TotalReward:14.0 SC:1573 UC:574 Eps:0.7505
+[Eval] Ep:82 TotalReward:24.0 SC:1597 UC:598 Eps:0.7415
+[Eval] Ep:83 TotalReward:20.0 SC:1617 UC:618 Eps:0.7341
+[Eval] Ep:84 TotalReward:13.0 SC:1630 UC:631 Eps:0.7294
+[Eval] Ep:85 TotalReward:30.0 SC:1660 UC:661 Eps:0.7185
+[Eval] Ep:86 TotalReward:31.0 SC:1691 UC:692 Eps:0.7075
+[Eval] Ep:87 TotalReward:13.0 SC:1704 UC:705 Eps:0.7029
+[Eval] Ep:88 TotalReward:20.0 SC:1724 UC:725 Eps:0.6959
+[Eval] Ep:89 TotalReward:9.0 SC:1733 UC:734 Eps:0.6927
+[Eval] Ep:90 TotalReward:11.0 SC:1744 UC:745 Eps:0.6889
+[Eval] Ep:91 TotalReward:16.0 SC:1760 UC:761 Eps:0.6835
+[Eval] Ep:92 TotalReward:10.0 SC:1770 UC:771 Eps:0.6800
+[Eval] Ep:93 TotalReward:12.0 SC:1782 UC:783 Eps:0.6760
+[Eval] Ep:94 TotalReward:26.0 SC:1808 UC:809 Eps:0.6672
+[Eval] Ep:95 TotalReward:23.0 SC:1831 UC:832 Eps:0.6596
+[Eval] Ep:96 TotalReward:10.0 SC:1841 UC:842 Eps:0.6563
+[Eval] Ep:97 TotalReward:20.0 SC:1861 UC:862 Eps:0.6498
+[Eval] Ep:98 TotalReward:11.0 SC:1872 UC:873 Eps:0.6462
+[Eval] Ep:99 TotalReward:16.0 SC:1888 UC:889 Eps:0.6411
+[Eval] Ep:100 TotalReward:13.0 SC:1901 UC:902 Eps:0.6369
+Saved checkpoint -> ./results\model_ep100.pt
+[TrueEval] Ep:100 EvalReward:10.00
+[Eval] Ep:101 TotalReward:12.0 SC:1913 UC:914 Eps:0.6331
+[Eval] Ep:102 TotalReward:16.0 SC:1929 UC:930 Eps:0.6281
+[Eval] Ep:103 TotalReward:11.0 SC:1940 UC:941 Eps:0.6246
+[Eval] Ep:104 TotalReward:12.0 SC:1952 UC:953 Eps:0.6209
+[Eval] Ep:105 TotalReward:9.0 SC:1961 UC:962 Eps:0.6181
+[Eval] Ep:106 TotalReward:20.0 SC:1981 UC:982 Eps:0.6119
+[Eval] Ep:107 TotalReward:10.0 SC:1991 UC:992 Eps:0.6089
+[Train #1000] Loss:0.0964 Qmean:2.617 Qstd:0.447
+[Collect] Ep:108 Step:9 SC:2000 UC:1001 Eps:0.6062
+[Eval] Ep:108 TotalReward:40.0 SC:2031 UC:1032 Eps:0.5968
+[Eval] Ep:109 TotalReward:13.0 SC:2044 UC:1045 Eps:0.5930
+[Eval] Ep:110 TotalReward:8.0 SC:2052 UC:1053 Eps:0.5906
+[Eval] Ep:111 TotalReward:14.0 SC:2066 UC:1067 Eps:0.5865
+[Eval] Ep:112 TotalReward:37.0 SC:2103 UC:1104 Eps:0.5757
+[Eval] Ep:113 TotalReward:17.0 SC:2120 UC:1121 Eps:0.5708
+[Eval] Ep:114 TotalReward:9.0 SC:2129 UC:1130 Eps:0.5683
+[Eval] Ep:115 TotalReward:14.0 SC:2143 UC:1144 Eps:0.5643
+[Eval] Ep:116 TotalReward:10.0 SC:2153 UC:1154 Eps:0.5615
+[Eval] Ep:117 TotalReward:12.0 SC:2165 UC:1166 Eps:0.5581
+[Eval] Ep:118 TotalReward:10.0 SC:2175 UC:1176 Eps:0.5554
+[Eval] Ep:119 TotalReward:11.0 SC:2186 UC:1187 Eps:0.5523
+[Eval] Ep:120 TotalReward:11.0 SC:2197 UC:1198 Eps:0.5493
+[TrueEval] Ep:120 EvalReward:13.00
+[Eval] Ep:121 TotalReward:20.0 SC:2217 UC:1218 Eps:0.5438
+[Eval] Ep:122 TotalReward:19.0 SC:2236 UC:1237 Eps:0.5387
+[Eval] Ep:123 TotalReward:25.0 SC:2261 UC:1262 Eps:0.5320
+[Eval] Ep:124 TotalReward:10.0 SC:2271 UC:1272 Eps:0.5293
+[Eval] Ep:125 TotalReward:15.0 SC:2286 UC:1287 Eps:0.5254
+[Eval] Ep:126 TotalReward:11.0 SC:2297 UC:1298 Eps:0.5225
+[Eval] Ep:127 TotalReward:13.0 SC:2310 UC:1311 Eps:0.5191
+[Eval] Ep:128 TotalReward:14.0 SC:2324 UC:1325 Eps:0.5155
+[Eval] Ep:129 TotalReward:11.0 SC:2335 UC:1336 Eps:0.5126
+[Eval] Ep:130 TotalReward:12.0 SC:2347 UC:1348 Eps:0.5096
+[Eval] Ep:131 TotalReward:11.0 SC:2358 UC:1359 Eps:0.5068
+[Eval] Ep:132 TotalReward:12.0 SC:2370 UC:1371 Eps:0.5038
+[Eval] Ep:133 TotalReward:12.0 SC:2382 UC:1383 Eps:0.5007
+[Eval] Ep:134 TotalReward:23.0 SC:2405 UC:1406 Eps:0.4950
+[Eval] Ep:135 TotalReward:10.0 SC:2415 UC:1416 Eps:0.4925
+[Eval] Ep:136 TotalReward:13.0 SC:2428 UC:1429 Eps:0.4893
+[Eval] Ep:137 TotalReward:14.0 SC:2442 UC:1443 Eps:0.4859
+[Eval] Ep:138 TotalReward:16.0 SC:2458 UC:1459 Eps:0.4821
+[Eval] Ep:139 TotalReward:9.0 SC:2467 UC:1468 Eps:0.4799
+[Eval] Ep:140 TotalReward:10.0 SC:2477 UC:1478 Eps:0.4775
+[TrueEval] Ep:140 EvalReward:9.00
+[Eval] Ep:141 TotalReward:11.0 SC:2488 UC:1489 Eps:0.4749
+[Eval] Ep:142 TotalReward:10.0 SC:2498 UC:1499 Eps:0.4725
+[Eval] Ep:143 TotalReward:10.0 SC:2508 UC:1509 Eps:0.4702
+[Eval] Ep:144 TotalReward:9.0 SC:2517 UC:1518 Eps:0.4680
+[Eval] Ep:145 TotalReward:11.0 SC:2528 UC:1529 Eps:0.4655
+[Eval] Ep:146 TotalReward:15.0 SC:2543 UC:1544 Eps:0.4620
+[Eval] Ep:147 TotalReward:17.0 SC:2560 UC:1561 Eps:0.4581
+[Eval] Ep:148 TotalReward:13.0 SC:2573 UC:1574 Eps:0.4551
+[Eval] Ep:149 TotalReward:37.0 SC:2610 UC:1611 Eps:0.4468
+[Eval] Ep:150 TotalReward:10.0 SC:2620 UC:1621 Eps:0.4445
+[Eval] Ep:151 TotalReward:10.0 SC:2630 UC:1631 Eps:0.4423
+[Eval] Ep:152 TotalReward:20.0 SC:2650 UC:1651 Eps:0.4379
+[Eval] Ep:153 TotalReward:19.0 SC:2669 UC:1670 Eps:0.4338
+[Eval] Ep:154 TotalReward:69.0 SC:2738 UC:1739 Eps:0.4191
+[Eval] Ep:155 TotalReward:24.0 SC:2762 UC:1763 Eps:0.4141
+[Eval] Ep:156 TotalReward:15.0 SC:2777 UC:1778 Eps:0.4110
+[Eval] Ep:157 TotalReward:13.0 SC:2790 UC:1791 Eps:0.4083
+[Eval] Ep:158 TotalReward:47.0 SC:2837 UC:1838 Eps:0.3988
+[Eval] Ep:159 TotalReward:15.0 SC:2852 UC:1853 Eps:0.3958
+[Eval] Ep:160 TotalReward:25.0 SC:2877 UC:1878 Eps:0.3909
+[TrueEval] Ep:160 EvalReward:27.00
+[Eval] Ep:161 TotalReward:10.0 SC:2887 UC:1888 Eps:0.3890
+[Eval] Ep:162 TotalReward:11.0 SC:2898 UC:1899 Eps:0.3868
+[Eval] Ep:163 TotalReward:18.0 SC:2916 UC:1917 Eps:0.3834
+[Eval] Ep:164 TotalReward:22.0 SC:2938 UC:1939 Eps:0.3792
+[Eval] Ep:165 TotalReward:53.0 SC:2991 UC:1992 Eps:0.3693
+[Train #2000] Loss:0.0133 Qmean:4.629 Qstd:0.857
+[Collect] Ep:166 Step:9 SC:3000 UC:2001 Eps:0.3676
+[Eval] Ep:166 TotalReward:63.0 SC:3054 UC:2055 Eps:0.3578
+[Eval] Ep:167 TotalReward:10.0 SC:3064 UC:2065 Eps:0.3560
+[Eval] Ep:168 TotalReward:31.0 SC:3095 UC:2096 Eps:0.3505
+[Eval] Ep:169 TotalReward:13.0 SC:3108 UC:2109 Eps:0.3483
+[Eval] Ep:170 TotalReward:26.0 SC:3134 UC:2135 Eps:0.3438
+[Eval] Ep:171 TotalReward:31.0 SC:3165 UC:2166 Eps:0.3385
+[Eval] Ep:172 TotalReward:23.0 SC:3188 UC:2189 Eps:0.3346
+[Eval] Ep:173 TotalReward:12.0 SC:3200 UC:2201 Eps:0.3326
+[Eval] Ep:174 TotalReward:47.0 SC:3247 UC:2248 Eps:0.3249
+[Eval] Ep:175 TotalReward:91.0 SC:3338 UC:2339 Eps:0.3104
+[Eval] Ep:176 TotalReward:71.0 SC:3409 UC:2410 Eps:0.2996
+[Eval] Ep:177 TotalReward:137.0 SC:3546 UC:2547 Eps:0.2798
+[Eval] Ep:178 TotalReward:39.0 SC:3585 UC:2586 Eps:0.2744
+[Eval] Ep:179 TotalReward:70.0 SC:3655 UC:2656 Eps:0.2649
+[Eval] Ep:180 TotalReward:69.0 SC:3724 UC:2725 Eps:0.2559
+[TrueEval] Ep:180 EvalReward:95.00
+[Eval] Ep:181 TotalReward:97.0 SC:3821 UC:2822 Eps:0.2438
+[Eval] Ep:182 TotalReward:133.0 SC:3954 UC:2955 Eps:0.2281
+[Train #3000] Loss:0.0996 Qmean:6.035 Qstd:1.943
+[Collect] Ep:183 Step:46 SC:4000 UC:3001 Eps:0.2229
+[Eval] Ep:183 TotalReward:139.0 SC:4093 UC:3094 Eps:0.2128
+[Eval] Ep:184 TotalReward:45.0 SC:4138 UC:3139 Eps:0.2081
+[Eval] Ep:185 TotalReward:236.0 SC:4374 UC:3375 Eps:0.1849
+[Eval] Ep:186 TotalReward:93.0 SC:4467 UC:3468 Eps:0.1765
+[Eval] Ep:187 TotalReward:194.0 SC:4661 UC:3662 Eps:0.1602
+[Eval] Ep:188 TotalReward:158.0 SC:4819 UC:3820 Eps:0.1480
+[Eval] Ep:189 TotalReward:133.0 SC:4952 UC:3953 Eps:0.1385
+[Train #4000] Loss:0.1322 Qmean:8.200 Qstd:2.592
+[Collect] Ep:190 Step:48 SC:5000 UC:4001 Eps:0.1352
+[Eval] Ep:190 TotalReward:100.0 SC:5052 UC:4053 Eps:0.1317
+[Eval] Ep:191 TotalReward:221.0 SC:5273 UC:4274 Eps:0.1179
+[Eval] Ep:192 TotalReward:157.0 SC:5430 UC:4431 Eps:0.1090
+[Eval] Ep:193 TotalReward:128.0 SC:5558 UC:4559 Eps:0.1023
+[Eval] Ep:194 TotalReward:96.0 SC:5654 UC:4655 Eps:0.0975
+[Eval] Ep:195 TotalReward:97.0 SC:5751 UC:4752 Eps:0.0929
+[Eval] Ep:196 TotalReward:218.0 SC:5969 UC:4970 Eps:0.0833
+[Train #5000] Loss:0.1074 Qmean:10.552 Qstd:2.928
+[Collect] Ep:197 Step:31 SC:6000 UC:5001 Eps:0.0820
+[Eval] Ep:197 TotalReward:95.0 SC:6064 UC:5065 Eps:0.0794
+[Eval] Ep:198 TotalReward:117.0 SC:6181 UC:5182 Eps:0.0749
+[Eval] Ep:199 TotalReward:107.0 SC:6288 UC:5289 Eps:0.0710
+[Eval] Ep:200 TotalReward:96.0 SC:6384 UC:5385 Eps:0.0677
+Saved checkpoint -> ./results\model_ep200.pt
+[TrueEval] Ep:200 EvalReward:92.00
+[Eval] Ep:201 TotalReward:111.0 SC:6495 UC:5496 Eps:0.0640
+[Eval] Ep:202 TotalReward:125.0 SC:6620 UC:5621 Eps:0.0601
+[Eval] Ep:203 TotalReward:104.0 SC:6724 UC:5725 Eps:0.0571
+[Eval] Ep:204 TotalReward:104.0 SC:6828 UC:5829 Eps:0.0542
+[Eval] Ep:205 TotalReward:117.0 SC:6945 UC:5946 Eps:0.0511
+[Train #6000] Loss:0.1381 Qmean:13.489 Qstd:2.843
+[Collect] Ep:206 Step:55 SC:7000 UC:6001 Eps:0.0497
+[Eval] Ep:206 TotalReward:118.0 SC:7063 UC:6064 Eps:0.0482
+[Eval] Ep:207 TotalReward:114.0 SC:7177 UC:6178 Eps:0.0455
+[Eval] Ep:208 TotalReward:106.0 SC:7283 UC:6284 Eps:0.0432
+[Eval] Ep:209 TotalReward:119.0 SC:7402 UC:6403 Eps:0.0407
+[Eval] Ep:210 TotalReward:114.0 SC:7516 UC:6517 Eps:0.0384
+[Eval] Ep:211 TotalReward:106.0 SC:7622 UC:6623 Eps:0.0364
+[Eval] Ep:212 TotalReward:129.0 SC:7751 UC:6752 Eps:0.0342
+[Eval] Ep:213 TotalReward:109.0 SC:7860 UC:6861 Eps:0.0323
+[Eval] Ep:214 TotalReward:120.0 SC:7980 UC:6981 Eps:0.0305
+[Train #7000] Loss:0.4929 Qmean:15.952 Qstd:3.201
+[Collect] Ep:215 Step:20 SC:8000 UC:7001 Eps:0.0302
+[Eval] Ep:215 TotalReward:113.0 SC:8093 UC:7094 Eps:0.0288
+[Eval] Ep:216 TotalReward:122.0 SC:8215 UC:7216 Eps:0.0271
+[Eval] Ep:217 TotalReward:108.0 SC:8323 UC:7324 Eps:0.0257
+[Eval] Ep:218 TotalReward:119.0 SC:8442 UC:7443 Eps:0.0242
+[Eval] Ep:219 TotalReward:97.0 SC:8539 UC:7540 Eps:0.0230
+[Eval] Ep:220 TotalReward:122.0 SC:8661 UC:7662 Eps:0.0217
+[TrueEval] Ep:220 EvalReward:113.00
+[Eval] Ep:221 TotalReward:108.0 SC:8769 UC:7770 Eps:0.0205
+[Eval] Ep:222 TotalReward:123.0 SC:8892 UC:7893 Eps:0.0193
+[Train #8000] Loss:0.1840 Qmean:17.235 Qstd:3.825
+[Collect] Ep:223 Step:108 SC:9000 UC:8001 Eps:0.0183
+[Eval] Ep:223 TotalReward:118.0 SC:9010 UC:8011 Eps:0.0182
+[Eval] Ep:224 TotalReward:117.0 SC:9127 UC:8128 Eps:0.0172
+[Eval] Ep:225 TotalReward:110.0 SC:9237 UC:8238 Eps:0.0162
+[Eval] Ep:226 TotalReward:103.0 SC:9340 UC:8341 Eps:0.0154
+[Eval] Ep:227 TotalReward:113.0 SC:9453 UC:8454 Eps:0.0146
+[Eval] Ep:228 TotalReward:126.0 SC:9579 UC:8580 Eps:0.0137
+[Eval] Ep:229 TotalReward:118.0 SC:9697 UC:8698 Eps:0.0129
+[Eval] Ep:230 TotalReward:114.0 SC:9811 UC:8812 Eps:0.0122
+[Eval] Ep:231 TotalReward:115.0 SC:9926 UC:8927 Eps:0.0115
+[Train #9000] Loss:0.0760 Qmean:19.343 Qstd:5.516
+[Collect] Ep:232 Step:74 SC:10000 UC:9001 Eps:0.0111
+[Eval] Ep:232 TotalReward:114.0 SC:10040 UC:9041 Eps:0.0109
+[Eval] Ep:233 TotalReward:132.0 SC:10172 UC:9173 Eps:0.0102
+[Eval] Ep:234 TotalReward:134.0 SC:10306 UC:9307 Eps:0.0100
+[Eval] Ep:235 TotalReward:116.0 SC:10422 UC:9423 Eps:0.0100
+[Eval] Ep:236 TotalReward:106.0 SC:10528 UC:9529 Eps:0.0100
+[Eval] Ep:237 TotalReward:121.0 SC:10649 UC:9650 Eps:0.0100
+[Eval] Ep:238 TotalReward:115.0 SC:10764 UC:9765 Eps:0.0100
+[Eval] Ep:239 TotalReward:112.0 SC:10876 UC:9877 Eps:0.0100
+[Eval] Ep:240 TotalReward:115.0 SC:10991 UC:9992 Eps:0.0100
+[TrueEval] Ep:240 EvalReward:120.00
+[Train #10000] Loss:0.0375 Qmean:21.845 Qstd:3.439
+[Collect] Ep:241 Step:9 SC:11000 UC:10001 Eps:0.0100
+[Eval] Ep:241 TotalReward:116.0 SC:11107 UC:10108 Eps:0.0100
+[Eval] Ep:242 TotalReward:122.0 SC:11229 UC:10230 Eps:0.0100
+[Eval] Ep:243 TotalReward:117.0 SC:11346 UC:10347 Eps:0.0100
+[Eval] Ep:244 TotalReward:119.0 SC:11465 UC:10466 Eps:0.0100
+[Eval] Ep:245 TotalReward:133.0 SC:11598 UC:10599 Eps:0.0100
+[Eval] Ep:246 TotalReward:221.0 SC:11819 UC:10820 Eps:0.0100
+[Eval] Ep:247 TotalReward:143.0 SC:11962 UC:10963 Eps:0.0100
+[Train #11000] Loss:0.0217 Qmean:23.446 Qstd:2.688
+[Collect] Ep:248 Step:38 SC:12000 UC:11001 Eps:0.0100
+[Eval] Ep:248 TotalReward:125.0 SC:12087 UC:11088 Eps:0.0100
+[Eval] Ep:249 TotalReward:151.0 SC:12238 UC:11239 Eps:0.0100
+[Eval] Ep:250 TotalReward:134.0 SC:12372 UC:11373 Eps:0.0100
+[Eval] Ep:251 TotalReward:143.0 SC:12515 UC:11516 Eps:0.0100
+[Eval] Ep:252 TotalReward:148.0 SC:12663 UC:11664 Eps:0.0100
+[Eval] Ep:253 TotalReward:179.0 SC:12842 UC:11843 Eps:0.0100
+[Eval] Ep:254 TotalReward:113.0 SC:12955 UC:11956 Eps:0.0100
+[Train #12000] Loss:0.0879 Qmean:25.512 Qstd:4.226
+[Collect] Ep:255 Step:45 SC:13000 UC:12001 Eps:0.0100
+[Eval] Ep:255 TotalReward:118.0 SC:13073 UC:12074 Eps:0.0100
+[Eval] Ep:256 TotalReward:127.0 SC:13200 UC:12201 Eps:0.0100
+[Eval] Ep:257 TotalReward:117.0 SC:13317 UC:12318 Eps:0.0100
+[Eval] Ep:258 TotalReward:204.0 SC:13521 UC:12522 Eps:0.0100
+[Eval] Ep:259 TotalReward:130.0 SC:13651 UC:12652 Eps:0.0100
+[Eval] Ep:260 TotalReward:196.0 SC:13847 UC:12848 Eps:0.0100
+[TrueEval] Ep:260 EvalReward:96.00
+[Train #13000] Loss:0.5035 Qmean:26.813 Qstd:3.937
+[Collect] Ep:261 Step:153 SC:14000 UC:13001 Eps:0.0100
+[Eval] Ep:261 TotalReward:192.0 SC:14039 UC:13040 Eps:0.0100
+[Eval] Ep:262 TotalReward:198.0 SC:14237 UC:13238 Eps:0.0100
+[Eval] Ep:263 TotalReward:125.0 SC:14362 UC:13363 Eps:0.0100
+[Eval] Ep:264 TotalReward:180.0 SC:14542 UC:13543 Eps:0.0100
+[Eval] Ep:265 TotalReward:113.0 SC:14655 UC:13656 Eps:0.0100
+[Eval] Ep:266 TotalReward:243.0 SC:14898 UC:13899 Eps:0.0100
+[Train #14000] Loss:0.0757 Qmean:28.446 Qstd:5.195
+[Collect] Ep:267 Step:102 SC:15000 UC:14001 Eps:0.0100
+[Eval] Ep:267 TotalReward:121.0 SC:15019 UC:14020 Eps:0.0100
+[Eval] Ep:268 TotalReward:133.0 SC:15152 UC:14153 Eps:0.0100
+[Eval] Ep:269 TotalReward:135.0 SC:15287 UC:14288 Eps:0.0100
+[Eval] Ep:270 TotalReward:129.0 SC:15416 UC:14417 Eps:0.0100
+[Eval] Ep:271 TotalReward:130.0 SC:15546 UC:14547 Eps:0.0100
+[Eval] Ep:272 TotalReward:129.0 SC:15675 UC:14676 Eps:0.0100
+[Eval] Ep:273 TotalReward:120.0 SC:15795 UC:14796 Eps:0.0100
+[Eval] Ep:274 TotalReward:134.0 SC:15929 UC:14930 Eps:0.0100
+[Train #15000] Loss:0.2309 Qmean:29.677 Qstd:7.574
+[Collect] Ep:275 Step:71 SC:16000 UC:15001 Eps:0.0100
+[Eval] Ep:275 TotalReward:120.0 SC:16049 UC:15050 Eps:0.0100
+[Eval] Ep:276 TotalReward:195.0 SC:16244 UC:15245 Eps:0.0100
+[Eval] Ep:277 TotalReward:191.0 SC:16435 UC:15436 Eps:0.0100
+[Eval] Ep:278 TotalReward:110.0 SC:16545 UC:15546 Eps:0.0100
+[Eval] Ep:279 TotalReward:161.0 SC:16706 UC:15707 Eps:0.0100
+[Eval] Ep:280 TotalReward:115.0 SC:16821 UC:15822 Eps:0.0100
+[TrueEval] Ep:280 EvalReward:112.00
+[Eval] Ep:281 TotalReward:144.0 SC:16965 UC:15966 Eps:0.0100
+[Train #16000] Loss:0.0290 Qmean:31.237 Qstd:5.648
+[Collect] Ep:282 Step:35 SC:17000 UC:16001 Eps:0.0100
+[Eval] Ep:282 TotalReward:158.0 SC:17123 UC:16124 Eps:0.0100
+[Eval] Ep:283 TotalReward:125.0 SC:17248 UC:16249 Eps:0.0100
+[Eval] Ep:284 TotalReward:163.0 SC:17411 UC:16412 Eps:0.0100
+[Eval] Ep:285 TotalReward:122.0 SC:17533 UC:16534 Eps:0.0100
+[Eval] Ep:286 TotalReward:178.0 SC:17711 UC:16712 Eps:0.0100
+[Eval] Ep:287 TotalReward:154.0 SC:17865 UC:16866 Eps:0.0100
+[Train #17000] Loss:0.0849 Qmean:33.546 Qstd:3.787
+[Collect] Ep:288 Step:135 SC:18000 UC:17001 Eps:0.0100
+[Eval] Ep:288 TotalReward:137.0 SC:18002 UC:17003 Eps:0.0100
+[Eval] Ep:289 TotalReward:126.0 SC:18128 UC:17129 Eps:0.0100
+[Eval] Ep:290 TotalReward:132.0 SC:18260 UC:17261 Eps:0.0100
+[Eval] Ep:291 TotalReward:144.0 SC:18404 UC:17405 Eps:0.0100
+[Eval] Ep:292 TotalReward:156.0 SC:18560 UC:17561 Eps:0.0100
+[Eval] Ep:293 TotalReward:133.0 SC:18693 UC:17694 Eps:0.0100
+[Eval] Ep:294 TotalReward:131.0 SC:18824 UC:17825 Eps:0.0100
+[Train #18000] Loss:0.5964 Qmean:35.353 Qstd:2.149
+[Collect] Ep:295 Step:176 SC:19000 UC:18001 Eps:0.0100
+[Eval] Ep:295 TotalReward:180.0 SC:19004 UC:18005 Eps:0.0100
+[Eval] Ep:296 TotalReward:118.0 SC:19122 UC:18123 Eps:0.0100
+[Eval] Ep:297 TotalReward:143.0 SC:19265 UC:18266 Eps:0.0100
+[Eval] Ep:298 TotalReward:124.0 SC:19389 UC:18390 Eps:0.0100
+[Eval] Ep:299 TotalReward:115.0 SC:19504 UC:18505 Eps:0.0100
+[Eval] Ep:300 TotalReward:112.0 SC:19616 UC:18617 Eps:0.0100
+Saved checkpoint -> ./results\model_ep300.pt
+[TrueEval] Ep:300 EvalReward:115.00
+[Eval] Ep:301 TotalReward:116.0 SC:19732 UC:18733 Eps:0.0100
+[Eval] Ep:302 TotalReward:117.0 SC:19849 UC:18850 Eps:0.0100
+[Eval] Ep:303 TotalReward:117.0 SC:19966 UC:18967 Eps:0.0100
+[Train #19000] Loss:0.6500 Qmean:36.538 Qstd:4.594
+[Collect] Ep:304 Step:34 SC:20000 UC:19001 Eps:0.0100
+[Eval] Ep:304 TotalReward:119.0 SC:20085 UC:19086 Eps:0.0100
+[Eval] Ep:305 TotalReward:117.0 SC:20202 UC:19203 Eps:0.0100
+[Eval] Ep:306 TotalReward:116.0 SC:20318 UC:19319 Eps:0.0100
+[Eval] Ep:307 TotalReward:112.0 SC:20430 UC:19431 Eps:0.0100
+[Eval] Ep:308 TotalReward:122.0 SC:20552 UC:19553 Eps:0.0100
+[Eval] Ep:309 TotalReward:108.0 SC:20660 UC:19661 Eps:0.0100
+[Eval] Ep:310 TotalReward:112.0 SC:20772 UC:19773 Eps:0.0100
+[Eval] Ep:311 TotalReward:117.0 SC:20889 UC:19890 Eps:0.0100
+[Train #20000] Loss:0.1761 Qmean:36.753 Qstd:4.716
+[Collect] Ep:312 Step:111 SC:21000 UC:20001 Eps:0.0100
+[Eval] Ep:312 TotalReward:123.0 SC:21012 UC:20013 Eps:0.0100
+[Eval] Ep:313 TotalReward:127.0 SC:21139 UC:20140 Eps:0.0100
+[Eval] Ep:314 TotalReward:113.0 SC:21252 UC:20253 Eps:0.0100
+[Eval] Ep:315 TotalReward:115.0 SC:21367 UC:20368 Eps:0.0100
+[Eval] Ep:316 TotalReward:116.0 SC:21483 UC:20484 Eps:0.0100
+[Eval] Ep:317 TotalReward:111.0 SC:21594 UC:20595 Eps:0.0100
+[Eval] Ep:318 TotalReward:117.0 SC:21711 UC:20712 Eps:0.0100
+[Eval] Ep:319 TotalReward:115.0 SC:21826 UC:20827 Eps:0.0100
+[Eval] Ep:320 TotalReward:14.0 SC:21840 UC:20841 Eps:0.0100
+[TrueEval] Ep:320 EvalReward:19.00
+[Eval] Ep:321 TotalReward:120.0 SC:21960 UC:20961 Eps:0.0100
+[Train #21000] Loss:0.0266 Qmean:39.092 Qstd:5.163
+[Collect] Ep:322 Step:40 SC:22000 UC:21001 Eps:0.0100
+[Eval] Ep:322 TotalReward:107.0 SC:22067 UC:21068 Eps:0.0100
+[Eval] Ep:323 TotalReward:118.0 SC:22185 UC:21186 Eps:0.0100
+[Eval] Ep:324 TotalReward:113.0 SC:22298 UC:21299 Eps:0.0100
+[Eval] Ep:325 TotalReward:112.0 SC:22410 UC:21411 Eps:0.0100
+[Eval] Ep:326 TotalReward:119.0 SC:22529 UC:21530 Eps:0.0100
+[Eval] Ep:327 TotalReward:111.0 SC:22640 UC:21641 Eps:0.0100
+[Eval] Ep:328 TotalReward:121.0 SC:22761 UC:21762 Eps:0.0100
+[Eval] Ep:329 TotalReward:112.0 SC:22873 UC:21874 Eps:0.0100
+[Eval] Ep:330 TotalReward:22.0 SC:22895 UC:21896 Eps:0.0100
+[Train #22000] Loss:0.0520 Qmean:41.425 Qstd:2.334
+[Collect] Ep:331 Step:105 SC:23000 UC:22001 Eps:0.0100
+[Eval] Ep:331 TotalReward:122.0 SC:23017 UC:22018 Eps:0.0100
+[Eval] Ep:332 TotalReward:114.0 SC:23131 UC:22132 Eps:0.0100
+[Eval] Ep:333 TotalReward:120.0 SC:23251 UC:22252 Eps:0.0100
+[Eval] Ep:334 TotalReward:136.0 SC:23387 UC:22388 Eps:0.0100
+[Eval] Ep:335 TotalReward:129.0 SC:23516 UC:22517 Eps:0.0100
+[Eval] Ep:336 TotalReward:114.0 SC:23630 UC:22631 Eps:0.0100
+[Eval] Ep:337 TotalReward:103.0 SC:23733 UC:22734 Eps:0.0100
+[Eval] Ep:338 TotalReward:140.0 SC:23873 UC:22874 Eps:0.0100
+[Eval] Ep:339 TotalReward:105.0 SC:23978 UC:22979 Eps:0.0100
+[Train #23000] Loss:0.0785 Qmean:41.140 Qstd:6.110
+[Collect] Ep:340 Step:22 SC:24000 UC:23001 Eps:0.0100
+[Eval] Ep:340 TotalReward:160.0 SC:24138 UC:23139 Eps:0.0100
+[TrueEval] Ep:340 EvalReward:115.00
+[Eval] Ep:341 TotalReward:133.0 SC:24271 UC:23272 Eps:0.0100
+[Eval] Ep:342 TotalReward:126.0 SC:24397 UC:23398 Eps:0.0100
+[Eval] Ep:343 TotalReward:121.0 SC:24518 UC:23519 Eps:0.0100
+[Eval] Ep:344 TotalReward:119.0 SC:24637 UC:23638 Eps:0.0100
+[Eval] Ep:345 TotalReward:123.0 SC:24760 UC:23761 Eps:0.0100
+[Eval] Ep:346 TotalReward:120.0 SC:24880 UC:23881 Eps:0.0100
+[Train #24000] Loss:0.1592 Qmean:42.731 Qstd:5.982
+[Collect] Ep:347 Step:120 SC:25000 UC:24001 Eps:0.0100
+[Eval] Ep:347 TotalReward:121.0 SC:25001 UC:24002 Eps:0.0100
+[Eval] Ep:348 TotalReward:119.0 SC:25120 UC:24121 Eps:0.0100
+[Eval] Ep:349 TotalReward:118.0 SC:25238 UC:24239 Eps:0.0100
+[Eval] Ep:350 TotalReward:113.0 SC:25351 UC:24352 Eps:0.0100
+[Eval] Ep:351 TotalReward:132.0 SC:25483 UC:24484 Eps:0.0100
+[Eval] Ep:352 TotalReward:152.0 SC:25635 UC:24636 Eps:0.0100
+[Eval] Ep:353 TotalReward:117.0 SC:25752 UC:24753 Eps:0.0100
+[Eval] Ep:354 TotalReward:126.0 SC:25878 UC:24879 Eps:0.0100
+[Eval] Ep:355 TotalReward:100.0 SC:25978 UC:24979 Eps:0.0100
+[Train #25000] Loss:0.0716 Qmean:44.676 Qstd:6.380
+[Collect] Ep:356 Step:22 SC:26000 UC:25001 Eps:0.0100
+[Eval] Ep:356 TotalReward:126.0 SC:26104 UC:25105 Eps:0.0100
+[Eval] Ep:357 TotalReward:15.0 SC:26119 UC:25120 Eps:0.0100
+[Eval] Ep:358 TotalReward:125.0 SC:26244 UC:25245 Eps:0.0100
+[Eval] Ep:359 TotalReward:139.0 SC:26383 UC:25384 Eps:0.0100
+[Eval] Ep:360 TotalReward:128.0 SC:26511 UC:25512 Eps:0.0100
+[TrueEval] Ep:360 EvalReward:109.00
+[Eval] Ep:361 TotalReward:118.0 SC:26629 UC:25630 Eps:0.0100
+[Eval] Ep:362 TotalReward:124.0 SC:26753 UC:25754 Eps:0.0100
+[Eval] Ep:363 TotalReward:114.0 SC:26867 UC:25868 Eps:0.0100
+[Eval] Ep:364 TotalReward:16.0 SC:26883 UC:25884 Eps:0.0100
+[Eval] Ep:365 TotalReward:115.0 SC:26998 UC:25999 Eps:0.0100
+[Train #26000] Loss:0.7441 Qmean:45.844 Qstd:5.999
+[Collect] Ep:366 Step:2 SC:27000 UC:26001 Eps:0.0100
+[Eval] Ep:366 TotalReward:117.0 SC:27115 UC:26116 Eps:0.0100
+[Eval] Ep:367 TotalReward:109.0 SC:27224 UC:26225 Eps:0.0100
+[Eval] Ep:368 TotalReward:16.0 SC:27240 UC:26241 Eps:0.0100
+[Eval] Ep:369 TotalReward:114.0 SC:27354 UC:26355 Eps:0.0100
+[Eval] Ep:370 TotalReward:15.0 SC:27369 UC:26370 Eps:0.0100
+[Eval] Ep:371 TotalReward:111.0 SC:27480 UC:26481 Eps:0.0100
+[Eval] Ep:372 TotalReward:106.0 SC:27586 UC:26587 Eps:0.0100
+[Eval] Ep:373 TotalReward:114.0 SC:27700 UC:26701 Eps:0.0100
+[Eval] Ep:374 TotalReward:114.0 SC:27814 UC:26815 Eps:0.0100
+[Eval] Ep:375 TotalReward:110.0 SC:27924 UC:26925 Eps:0.0100
+[Train #27000] Loss:0.6650 Qmean:46.772 Qstd:6.453
+[Collect] Ep:376 Step:76 SC:28000 UC:27001 Eps:0.0100
+[Eval] Ep:376 TotalReward:122.0 SC:28046 UC:27047 Eps:0.0100
+[Eval] Ep:377 TotalReward:112.0 SC:28158 UC:27159 Eps:0.0100
+[Eval] Ep:378 TotalReward:115.0 SC:28273 UC:27274 Eps:0.0100
+[Eval] Ep:379 TotalReward:110.0 SC:28383 UC:27384 Eps:0.0100
+[Eval] Ep:380 TotalReward:110.0 SC:28493 UC:27494 Eps:0.0100
+[TrueEval] Ep:380 EvalReward:118.00
+[Eval] Ep:381 TotalReward:110.0 SC:28603 UC:27604 Eps:0.0100
+[Eval] Ep:382 TotalReward:120.0 SC:28723 UC:27724 Eps:0.0100
+[Eval] Ep:383 TotalReward:121.0 SC:28844 UC:27845 Eps:0.0100
+[Eval] Ep:384 TotalReward:112.0 SC:28956 UC:27957 Eps:0.0100
+[Train #28000] Loss:0.0544 Qmean:49.302 Qstd:3.981
+[Collect] Ep:385 Step:44 SC:29000 UC:28001 Eps:0.0100
+[Eval] Ep:385 TotalReward:112.0 SC:29068 UC:28069 Eps:0.0100
+[Eval] Ep:386 TotalReward:116.0 SC:29184 UC:28185 Eps:0.0100
+[Eval] Ep:387 TotalReward:119.0 SC:29303 UC:28304 Eps:0.0100
+[Eval] Ep:388 TotalReward:122.0 SC:29425 UC:28426 Eps:0.0100
+[Eval] Ep:389 TotalReward:107.0 SC:29532 UC:28533 Eps:0.0100
+[Eval] Ep:390 TotalReward:122.0 SC:29654 UC:28655 Eps:0.0100
+[Eval] Ep:391 TotalReward:119.0 SC:29773 UC:28774 Eps:0.0100
+[Eval] Ep:392 TotalReward:126.0 SC:29899 UC:28900 Eps:0.0100
+[Train #29000] Loss:0.8452 Qmean:49.884 Qstd:4.976
+[Collect] Ep:393 Step:101 SC:30000 UC:29001 Eps:0.0100
+[Eval] Ep:393 TotalReward:121.0 SC:30020 UC:29021 Eps:0.0100
+[Eval] Ep:394 TotalReward:115.0 SC:30135 UC:29136 Eps:0.0100
+[Eval] Ep:395 TotalReward:119.0 SC:30254 UC:29255 Eps:0.0100
+[Eval] Ep:396 TotalReward:117.0 SC:30371 UC:29372 Eps:0.0100
+[Eval] Ep:397 TotalReward:114.0 SC:30485 UC:29486 Eps:0.0100
+[Eval] Ep:398 TotalReward:115.0 SC:30600 UC:29601 Eps:0.0100
+[Eval] Ep:399 TotalReward:146.0 SC:30746 UC:29747 Eps:0.0100
+[Eval] Ep:400 TotalReward:123.0 SC:30869 UC:29870 Eps:0.0100
+Saved checkpoint -> ./results\model_ep400.pt
+[TrueEval] Ep:400 EvalReward:85.00
+[Train #30000] Loss:1.3883 Qmean:50.797 Qstd:4.279
+[Collect] Ep:401 Step:131 SC:31000 UC:30001 Eps:0.0100
+[Eval] Ep:401 TotalReward:135.0 SC:31004 UC:30005 Eps:0.0100
+[Eval] Ep:402 TotalReward:122.0 SC:31126 UC:30127 Eps:0.0100
+[Eval] Ep:403 TotalReward:130.0 SC:31256 UC:30257 Eps:0.0100
+[Eval] Ep:404 TotalReward:131.0 SC:31387 UC:30388 Eps:0.0100
+[Eval] Ep:405 TotalReward:128.0 SC:31515 UC:30516 Eps:0.0100
+[Eval] Ep:406 TotalReward:110.0 SC:31625 UC:30626 Eps:0.0100
+[Eval] Ep:407 TotalReward:132.0 SC:31757 UC:30758 Eps:0.0100
+[Eval] Ep:408 TotalReward:113.0 SC:31870 UC:30871 Eps:0.0100
+[Eval] Ep:409 TotalReward:110.0 SC:31980 UC:30981 Eps:0.0100
+[Train #31000] Loss:0.0924 Qmean:50.526 Qstd:8.149
+[Collect] Ep:410 Step:20 SC:32000 UC:31001 Eps:0.0100
+[Eval] Ep:410 TotalReward:113.0 SC:32093 UC:31094 Eps:0.0100
+[Eval] Ep:411 TotalReward:117.0 SC:32210 UC:31211 Eps:0.0100
+[Eval] Ep:412 TotalReward:111.0 SC:32321 UC:31322 Eps:0.0100
+[Eval] Ep:413 TotalReward:119.0 SC:32440 UC:31441 Eps:0.0100
+[Eval] Ep:414 TotalReward:115.0 SC:32555 UC:31556 Eps:0.0100
+[Eval] Ep:415 TotalReward:118.0 SC:32673 UC:31674 Eps:0.0100
+[Eval] Ep:416 TotalReward:123.0 SC:32796 UC:31797 Eps:0.0100
+[Eval] Ep:417 TotalReward:112.0 SC:32908 UC:31909 Eps:0.0100
+[Train #32000] Loss:0.0221 Qmean:54.373 Qstd:1.951
+[Collect] Ep:418 Step:92 SC:33000 UC:32001 Eps:0.0100
+[Eval] Ep:418 TotalReward:121.0 SC:33029 UC:32030 Eps:0.0100
+[Eval] Ep:419 TotalReward:116.0 SC:33145 UC:32146 Eps:0.0100
+[Eval] Ep:420 TotalReward:137.0 SC:33282 UC:32283 Eps:0.0100
+[TrueEval] Ep:420 EvalReward:117.00
+[Eval] Ep:421 TotalReward:136.0 SC:33418 UC:32419 Eps:0.0100
+[Eval] Ep:422 TotalReward:122.0 SC:33540 UC:32541 Eps:0.0100
+[Eval] Ep:423 TotalReward:117.0 SC:33657 UC:32658 Eps:0.0100
+[Eval] Ep:424 TotalReward:117.0 SC:33774 UC:32775 Eps:0.0100
+[Eval] Ep:425 TotalReward:127.0 SC:33901 UC:32902 Eps:0.0100
+[Train #33000] Loss:1.0033 Qmean:51.218 Qstd:12.847
+[Collect] Ep:426 Step:99 SC:34000 UC:33001 Eps:0.0100
+[Eval] Ep:426 TotalReward:122.0 SC:34023 UC:33024 Eps:0.0100
+[Eval] Ep:427 TotalReward:107.0 SC:34130 UC:33131 Eps:0.0100
+[Eval] Ep:428 TotalReward:113.0 SC:34243 UC:33244 Eps:0.0100
+[Eval] Ep:429 TotalReward:113.0 SC:34356 UC:33357 Eps:0.0100
+[Eval] Ep:430 TotalReward:106.0 SC:34462 UC:33463 Eps:0.0100
+[Eval] Ep:431 TotalReward:101.0 SC:34563 UC:33564 Eps:0.0100
+[Eval] Ep:432 TotalReward:128.0 SC:34691 UC:33692 Eps:0.0100
+[Eval] Ep:433 TotalReward:121.0 SC:34812 UC:33813 Eps:0.0100
+[Eval] Ep:434 TotalReward:19.0 SC:34831 UC:33832 Eps:0.0100
+[Eval] Ep:435 TotalReward:18.0 SC:34849 UC:33850 Eps:0.0100
+[Eval] Ep:436 TotalReward:112.0 SC:34961 UC:33962 Eps:0.0100
+[Train #34000] Loss:0.4792 Qmean:54.465 Qstd:6.211
+[Collect] Ep:437 Step:39 SC:35000 UC:34001 Eps:0.0100
+[Eval] Ep:437 TotalReward:125.0 SC:35086 UC:34087 Eps:0.0100
+[Eval] Ep:438 TotalReward:126.0 SC:35212 UC:34213 Eps:0.0100
+[Eval] Ep:439 TotalReward:122.0 SC:35334 UC:34335 Eps:0.0100
+[Eval] Ep:440 TotalReward:121.0 SC:35455 UC:34456 Eps:0.0100
+[TrueEval] Ep:440 EvalReward:97.00
+[Eval] Ep:441 TotalReward:126.0 SC:35581 UC:34582 Eps:0.0100
+[Eval] Ep:442 TotalReward:118.0 SC:35699 UC:34700 Eps:0.0100
+[Eval] Ep:443 TotalReward:102.0 SC:35801 UC:34802 Eps:0.0100
+[Eval] Ep:444 TotalReward:110.0 SC:35911 UC:34912 Eps:0.0100
+[Train #35000] Loss:0.0258 Qmean:56.239 Qstd:4.041
+[Collect] Ep:445 Step:89 SC:36000 UC:35001 Eps:0.0100
+[Eval] Ep:445 TotalReward:124.0 SC:36035 UC:35036 Eps:0.0100
+[Eval] Ep:446 TotalReward:113.0 SC:36148 UC:35149 Eps:0.0100
+[Eval] Ep:447 TotalReward:119.0 SC:36267 UC:35268 Eps:0.0100
+[Eval] Ep:448 TotalReward:113.0 SC:36380 UC:35381 Eps:0.0100
+[Eval] Ep:449 TotalReward:124.0 SC:36504 UC:35505 Eps:0.0100
+[Eval] Ep:450 TotalReward:114.0 SC:36618 UC:35619 Eps:0.0100
+[Eval] Ep:451 TotalReward:114.0 SC:36732 UC:35733 Eps:0.0100
+[Eval] Ep:452 TotalReward:98.0 SC:36830 UC:35831 Eps:0.0100
+[Eval] Ep:453 TotalReward:112.0 SC:36942 UC:35943 Eps:0.0100
+[Train #36000] Loss:0.3536 Qmean:55.502 Qstd:9.193
+[Collect] Ep:454 Step:58 SC:37000 UC:36001 Eps:0.0100
+[Eval] Ep:454 TotalReward:117.0 SC:37059 UC:36060 Eps:0.0100
+[Eval] Ep:455 TotalReward:125.0 SC:37184 UC:36185 Eps:0.0100
+[Eval] Ep:456 TotalReward:131.0 SC:37315 UC:36316 Eps:0.0100
+[Eval] Ep:457 TotalReward:106.0 SC:37421 UC:36422 Eps:0.0100
+[Eval] Ep:458 TotalReward:107.0 SC:37528 UC:36529 Eps:0.0100
+[Eval] Ep:459 TotalReward:118.0 SC:37646 UC:36647 Eps:0.0100
+[Eval] Ep:460 TotalReward:122.0 SC:37768 UC:36769 Eps:0.0100
+[TrueEval] Ep:460 EvalReward:105.00
+[Eval] Ep:461 TotalReward:115.0 SC:37883 UC:36884 Eps:0.0100
+[Eval] Ep:462 TotalReward:104.0 SC:37987 UC:36988 Eps:0.0100
+[Train #37000] Loss:0.6272 Qmean:56.264 Qstd:9.187
+[Collect] Ep:463 Step:13 SC:38000 UC:37001 Eps:0.0100
+[Eval] Ep:463 TotalReward:129.0 SC:38116 UC:37117 Eps:0.0100
+[Eval] Ep:464 TotalReward:121.0 SC:38237 UC:37238 Eps:0.0100
+[Eval] Ep:465 TotalReward:111.0 SC:38348 UC:37349 Eps:0.0100
+[Eval] Ep:466 TotalReward:120.0 SC:38468 UC:37469 Eps:0.0100
+[Eval] Ep:467 TotalReward:111.0 SC:38579 UC:37580 Eps:0.0100
+[Eval] Ep:468 TotalReward:105.0 SC:38684 UC:37685 Eps:0.0100
+[Eval] Ep:469 TotalReward:120.0 SC:38804 UC:37805 Eps:0.0100
+[Eval] Ep:470 TotalReward:144.0 SC:38948 UC:37949 Eps:0.0100
+[Train #38000] Loss:0.7071 Qmean:53.970 Qstd:12.949
+[Collect] Ep:471 Step:52 SC:39000 UC:38001 Eps:0.0100
+[Eval] Ep:471 TotalReward:135.0 SC:39083 UC:38084 Eps:0.0100
+[Eval] Ep:472 TotalReward:107.0 SC:39190 UC:38191 Eps:0.0100
+[Eval] Ep:473 TotalReward:127.0 SC:39317 UC:38318 Eps:0.0100
+[Eval] Ep:474 TotalReward:114.0 SC:39431 UC:38432 Eps:0.0100
+[Eval] Ep:475 TotalReward:123.0 SC:39554 UC:38555 Eps:0.0100
+[Eval] Ep:476 TotalReward:15.0 SC:39569 UC:38570 Eps:0.0100
+[Eval] Ep:477 TotalReward:121.0 SC:39690 UC:38691 Eps:0.0100
+[Eval] Ep:478 TotalReward:131.0 SC:39821 UC:38822 Eps:0.0100
+[Eval] Ep:479 TotalReward:119.0 SC:39940 UC:38941 Eps:0.0100
+[Train #39000] Loss:0.0528 Qmean:58.060 Qstd:8.450
+[Collect] Ep:480 Step:60 SC:40000 UC:39001 Eps:0.0100
+[Eval] Ep:480 TotalReward:116.0 SC:40056 UC:39057 Eps:0.0100
+[TrueEval] Ep:480 EvalReward:101.00
+[Eval] Ep:481 TotalReward:104.0 SC:40160 UC:39161 Eps:0.0100
+[Eval] Ep:482 TotalReward:114.0 SC:40274 UC:39275 Eps:0.0100
+[Eval] Ep:483 TotalReward:120.0 SC:40394 UC:39395 Eps:0.0100
+[Eval] Ep:484 TotalReward:113.0 SC:40507 UC:39508 Eps:0.0100
+[Eval] Ep:485 TotalReward:101.0 SC:40608 UC:39609 Eps:0.0100
+[Eval] Ep:486 TotalReward:98.0 SC:40706 UC:39707 Eps:0.0100
+[Eval] Ep:487 TotalReward:123.0 SC:40829 UC:39830 Eps:0.0100
+[Eval] Ep:488 TotalReward:110.0 SC:40939 UC:39940 Eps:0.0100
+[Train #40000] Loss:0.0471 Qmean:58.133 Qstd:9.725
+[Collect] Ep:489 Step:61 SC:41000 UC:40001 Eps:0.0100
+[Eval] Ep:489 TotalReward:113.0 SC:41052 UC:40053 Eps:0.0100
+[Eval] Ep:490 TotalReward:112.0 SC:41164 UC:40165 Eps:0.0100
+[Eval] Ep:491 TotalReward:115.0 SC:41279 UC:40280 Eps:0.0100
+[Eval] Ep:492 TotalReward:110.0 SC:41389 UC:40390 Eps:0.0100
+[Eval] Ep:493 TotalReward:118.0 SC:41507 UC:40508 Eps:0.0100
+[Eval] Ep:494 TotalReward:116.0 SC:41623 UC:40624 Eps:0.0100
+[Eval] Ep:495 TotalReward:106.0 SC:41729 UC:40730 Eps:0.0100
+[Eval] Ep:496 TotalReward:112.0 SC:41841 UC:40842 Eps:0.0100
+[Eval] Ep:497 TotalReward:108.0 SC:41949 UC:40950 Eps:0.0100
+[Train #41000] Loss:0.2306 Qmean:56.687 Qstd:14.681
+[Collect] Ep:498 Step:51 SC:42000 UC:41001 Eps:0.0100
+[Eval] Ep:498 TotalReward:106.0 SC:42055 UC:41056 Eps:0.0100
+[Eval] Ep:499 TotalReward:103.0 SC:42158 UC:41159 Eps:0.0100
+[Eval] Ep:500 TotalReward:107.0 SC:42265 UC:41266 Eps:0.0100
+Saved checkpoint -> ./results\model_ep500.pt
+[TrueEval] Ep:500 EvalReward:110.00
+[Eval] Ep:501 TotalReward:109.0 SC:42374 UC:41375 Eps:0.0100
+[Eval] Ep:502 TotalReward:114.0 SC:42488 UC:41489 Eps:0.0100
+[Eval] Ep:503 TotalReward:16.0 SC:42504 UC:41505 Eps:0.0100
+[Eval] Ep:504 TotalReward:112.0 SC:42616 UC:41617 Eps:0.0100
+[Eval] Ep:505 TotalReward:114.0 SC:42730 UC:41731 Eps:0.0100
+[Eval] Ep:506 TotalReward:113.0 SC:42843 UC:41844 Eps:0.0100
+[Eval] Ep:507 TotalReward:120.0 SC:42963 UC:41964 Eps:0.0100
+[Train #42000] Loss:0.0411 Qmean:55.977 Qstd:16.023
+[Collect] Ep:508 Step:37 SC:43000 UC:42001 Eps:0.0100
+[Eval] Ep:508 TotalReward:105.0 SC:43068 UC:42069 Eps:0.0100
+[Eval] Ep:509 TotalReward:111.0 SC:43179 UC:42180 Eps:0.0100
+[Eval] Ep:510 TotalReward:104.0 SC:43283 UC:42284 Eps:0.0100
+[Eval] Ep:511 TotalReward:114.0 SC:43397 UC:42398 Eps:0.0100
+[Eval] Ep:512 TotalReward:113.0 SC:43510 UC:42511 Eps:0.0100
+[Eval] Ep:513 TotalReward:118.0 SC:43628 UC:42629 Eps:0.0100
+[Eval] Ep:514 TotalReward:123.0 SC:43751 UC:42752 Eps:0.0100
+[Eval] Ep:515 TotalReward:112.0 SC:43863 UC:42864 Eps:0.0100
+[Eval] Ep:516 TotalReward:123.0 SC:43986 UC:42987 Eps:0.0100
+[Train #43000] Loss:0.1997 Qmean:56.176 Qstd:17.465
+[Collect] Ep:517 Step:14 SC:44000 UC:43001 Eps:0.0100
+[Eval] Ep:517 TotalReward:151.0 SC:44137 UC:43138 Eps:0.0100
+[Eval] Ep:518 TotalReward:128.0 SC:44265 UC:43266 Eps:0.0100
+[Eval] Ep:519 TotalReward:123.0 SC:44388 UC:43389 Eps:0.0100
+[Eval] Ep:520 TotalReward:124.0 SC:44512 UC:43513 Eps:0.0100
+[TrueEval] Ep:520 EvalReward:17.00
+[Eval] Ep:521 TotalReward:119.0 SC:44631 UC:43632 Eps:0.0100
+[Eval] Ep:522 TotalReward:117.0 SC:44748 UC:43749 Eps:0.0100
+[Eval] Ep:523 TotalReward:129.0 SC:44877 UC:43878 Eps:0.0100
+[Eval] Ep:524 TotalReward:28.0 SC:44905 UC:43906 Eps:0.0100
+[Train #44000] Loss:0.0456 Qmean:58.436 Qstd:15.915
+[Collect] Ep:525 Step:95 SC:45000 UC:44001 Eps:0.0100
+[Eval] Ep:525 TotalReward:114.0 SC:45019 UC:44020 Eps:0.0100
+[Eval] Ep:526 TotalReward:115.0 SC:45134 UC:44135 Eps:0.0100
+[Eval] Ep:527 TotalReward:119.0 SC:45253 UC:44254 Eps:0.0100
+[Eval] Ep:528 TotalReward:103.0 SC:45356 UC:44357 Eps:0.0100
+[Eval] Ep:529 TotalReward:104.0 SC:45460 UC:44461 Eps:0.0100
+[Eval] Ep:530 TotalReward:101.0 SC:45561 UC:44562 Eps:0.0100
+[Eval] Ep:531 TotalReward:115.0 SC:45676 UC:44677 Eps:0.0100
+[Eval] Ep:532 TotalReward:108.0 SC:45784 UC:44785 Eps:0.0100
+[Eval] Ep:533 TotalReward:107.0 SC:45891 UC:44892 Eps:0.0100
+[Train #45000] Loss:0.0832 Qmean:62.811 Qstd:10.105
+[Collect] Ep:534 Step:109 SC:46000 UC:45001 Eps:0.0100
+[Eval] Ep:534 TotalReward:111.0 SC:46002 UC:45003 Eps:0.0100
+[Eval] Ep:535 TotalReward:90.0 SC:46092 UC:45093 Eps:0.0100
+[Eval] Ep:536 TotalReward:23.0 SC:46115 UC:45116 Eps:0.0100
+[Eval] Ep:537 TotalReward:12.0 SC:46127 UC:45128 Eps:0.0100
+[Eval] Ep:538 TotalReward:16.0 SC:46143 UC:45144 Eps:0.0100
+[Eval] Ep:539 TotalReward:15.0 SC:46158 UC:45159 Eps:0.0100
+[Eval] Ep:540 TotalReward:14.0 SC:46172 UC:45173 Eps:0.0100
+[TrueEval] Ep:540 EvalReward:17.00
+[Eval] Ep:541 TotalReward:94.0 SC:46266 UC:45267 Eps:0.0100
+[Eval] Ep:542 TotalReward:90.0 SC:46356 UC:45357 Eps:0.0100
+[Eval] Ep:543 TotalReward:98.0 SC:46454 UC:45455 Eps:0.0100
+[Eval] Ep:544 TotalReward:98.0 SC:46552 UC:45553 Eps:0.0100
+[Eval] Ep:545 TotalReward:93.0 SC:46645 UC:45646 Eps:0.0100
+[Eval] Ep:546 TotalReward:99.0 SC:46744 UC:45745 Eps:0.0100
+[Eval] Ep:547 TotalReward:90.0 SC:46834 UC:45835 Eps:0.0100
+[Eval] Ep:548 TotalReward:101.0 SC:46935 UC:45936 Eps:0.0100
+[Train #46000] Loss:0.8545 Qmean:63.226 Qstd:11.056
+[Collect] Ep:549 Step:65 SC:47000 UC:46001 Eps:0.0100
+[Eval] Ep:549 TotalReward:96.0 SC:47031 UC:46032 Eps:0.0100
+[Eval] Ep:550 TotalReward:104.0 SC:47135 UC:46136 Eps:0.0100
+[Eval] Ep:551 TotalReward:96.0 SC:47231 UC:46232 Eps:0.0100
+[Eval] Ep:552 TotalReward:109.0 SC:47340 UC:46341 Eps:0.0100
+[Eval] Ep:553 TotalReward:103.0 SC:47443 UC:46444 Eps:0.0100
+[Eval] Ep:554 TotalReward:108.0 SC:47551 UC:46552 Eps:0.0100
+[Eval] Ep:555 TotalReward:107.0 SC:47658 UC:46659 Eps:0.0100
+[Eval] Ep:556 TotalReward:109.0 SC:47767 UC:46768 Eps:0.0100
+[Eval] Ep:557 TotalReward:115.0 SC:47882 UC:46883 Eps:0.0100
+[Eval] Ep:558 TotalReward:107.0 SC:47989 UC:46990 Eps:0.0100
+[Train #47000] Loss:0.0678 Qmean:63.103 Qstd:13.638
+[Collect] Ep:559 Step:11 SC:48000 UC:47001 Eps:0.0100
+[Eval] Ep:559 TotalReward:121.0 SC:48110 UC:47111 Eps:0.0100
+[Eval] Ep:560 TotalReward:128.0 SC:48238 UC:47239 Eps:0.0100
+[TrueEval] Ep:560 EvalReward:114.00
+[Eval] Ep:561 TotalReward:133.0 SC:48371 UC:47372 Eps:0.0100
+[Eval] Ep:562 TotalReward:117.0 SC:48488 UC:47489 Eps:0.0100
+[Eval] Ep:563 TotalReward:130.0 SC:48618 UC:47619 Eps:0.0100
+[Eval] Ep:564 TotalReward:122.0 SC:48740 UC:47741 Eps:0.0100
+[Eval] Ep:565 TotalReward:119.0 SC:48859 UC:47860 Eps:0.0100
+[Eval] Ep:566 TotalReward:111.0 SC:48970 UC:47971 Eps:0.0100
+[Train #48000] Loss:0.4485 Qmean:62.075 Qstd:15.460
+[Collect] Ep:567 Step:30 SC:49000 UC:48001 Eps:0.0100
+[Eval] Ep:567 TotalReward:120.0 SC:49090 UC:48091 Eps:0.0100
+[Eval] Ep:568 TotalReward:119.0 SC:49209 UC:48210 Eps:0.0100
+[Eval] Ep:569 TotalReward:121.0 SC:49330 UC:48331 Eps:0.0100
+[Eval] Ep:570 TotalReward:123.0 SC:49453 UC:48454 Eps:0.0100
+[Eval] Ep:571 TotalReward:120.0 SC:49573 UC:48574 Eps:0.0100
+[Eval] Ep:572 TotalReward:128.0 SC:49701 UC:48702 Eps:0.0100
+[Eval] Ep:573 TotalReward:144.0 SC:49845 UC:48846 Eps:0.0100
+[Train #49000] Loss:0.6966 Qmean:54.853 Qstd:23.907
+[Collect] Ep:574 Step:155 SC:50000 UC:49001 Eps:0.0100
+[Eval] Ep:574 TotalReward:157.0 SC:50002 UC:49003 Eps:0.0100
+[Eval] Ep:575 TotalReward:135.0 SC:50137 UC:49138 Eps:0.0100
+[Eval] Ep:576 TotalReward:135.0 SC:50272 UC:49273 Eps:0.0100
+[Eval] Ep:577 TotalReward:123.0 SC:50395 UC:49396 Eps:0.0100
+[Eval] Ep:578 TotalReward:122.0 SC:50517 UC:49518 Eps:0.0100
+[Eval] Ep:579 TotalReward:123.0 SC:50640 UC:49641 Eps:0.0100
+[Eval] Ep:580 TotalReward:127.0 SC:50767 UC:49768 Eps:0.0100
+New best -> ./results\best_model.pt reward=180.0
+[TrueEval] Ep:580 EvalReward:180.00
+[Eval] Ep:581 TotalReward:120.0 SC:50887 UC:49888 Eps:0.0100
+[Train #50000] Loss:0.0190 Qmean:63.750 Qstd:14.581
+[Collect] Ep:582 Step:113 SC:51000 UC:50001 Eps:0.0100
+[Eval] Ep:582 TotalReward:119.0 SC:51006 UC:50007 Eps:0.0100
+[Eval] Ep:583 TotalReward:120.0 SC:51126 UC:50127 Eps:0.0100
+[Eval] Ep:584 TotalReward:119.0 SC:51245 UC:50246 Eps:0.0100
+[Eval] Ep:585 TotalReward:120.0 SC:51365 UC:50366 Eps:0.0100
+[Eval] Ep:586 TotalReward:113.0 SC:51478 UC:50479 Eps:0.0100
+[Eval] Ep:587 TotalReward:133.0 SC:51611 UC:50612 Eps:0.0100
+[Eval] Ep:588 TotalReward:150.0 SC:51761 UC:50762 Eps:0.0100
+[Eval] Ep:589 TotalReward:167.0 SC:51928 UC:50929 Eps:0.0100
+[Train #51000] Loss:0.1034 Qmean:58.382 Qstd:20.860
+[Collect] Ep:590 Step:72 SC:52000 UC:51001 Eps:0.0100
+[Eval] Ep:590 TotalReward:150.0 SC:52078 UC:51079 Eps:0.0100
+[Eval] Ep:591 TotalReward:155.0 SC:52233 UC:51234 Eps:0.0100
+[Eval] Ep:592 TotalReward:157.0 SC:52390 UC:51391 Eps:0.0100
+[Eval] Ep:593 TotalReward:134.0 SC:52524 UC:51525 Eps:0.0100
+[Eval] Ep:594 TotalReward:136.0 SC:52660 UC:51661 Eps:0.0100
+[Eval] Ep:595 TotalReward:135.0 SC:52795 UC:51796 Eps:0.0100
+[Eval] Ep:596 TotalReward:168.0 SC:52963 UC:51964 Eps:0.0100
+[Train #52000] Loss:0.0362 Qmean:61.476 Qstd:18.474
+[Collect] Ep:597 Step:37 SC:53000 UC:52001 Eps:0.0100
+[Eval] Ep:597 TotalReward:156.0 SC:53119 UC:52120 Eps:0.0100
+[Eval] Ep:598 TotalReward:154.0 SC:53273 UC:52274 Eps:0.0100
+[Eval] Ep:599 TotalReward:148.0 SC:53421 UC:52422 Eps:0.0100
