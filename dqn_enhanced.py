@@ -1,6 +1,6 @@
 # Spring 2026, 535518 Deep Learning
 # Lab5: Value-based RL - Enhanced DQN (Task 3)
-# Flags: --double-dqn, --per, --n-step N
+# Flags: --double-dqn, --per, --n-step N, --huber-loss, --dueling-dqn, --reward-clip, --noisy-net
 
 import torch
 import torch.nn as nn
@@ -12,6 +12,7 @@ import gymnasium as gym
 import cv2
 import ale_py
 import os
+import math
 from collections import deque
 import wandb
 import argparse
@@ -26,11 +27,62 @@ def init_weights(m):
             nn.init.constant_(m.bias, 0)
 
 
+class NoisyLinear(nn.Module):
+    def __init__(self, in_features, out_features, std_init=0.5):
+        super(NoisyLinear, self).__init__()
+        self.in_features = in_features
+        self.out_features = out_features
+        self.std_init = std_init
+
+        self.weight_mu = nn.Parameter(torch.empty(out_features, in_features))
+        self.weight_sigma = nn.Parameter(torch.empty(out_features, in_features))
+        self.register_buffer('weight_epsilon', torch.empty(out_features, in_features))
+
+        self.bias_mu = nn.Parameter(torch.empty(out_features))
+        self.bias_sigma = nn.Parameter(torch.empty(out_features))
+        self.register_buffer('bias_epsilon', torch.empty(out_features))
+
+        self.reset_parameters()
+        self.reset_noise()
+
+    def reset_parameters(self):
+        mu_range = 1 / math.sqrt(self.in_features)
+        self.weight_mu.data.uniform_(-mu_range, mu_range)
+        self.weight_sigma.data.fill_(self.std_init / math.sqrt(self.in_features))
+        self.bias_mu.data.uniform_(-mu_range, mu_range)
+        self.bias_sigma.data.fill_(self.std_init / math.sqrt(self.out_features))
+
+    def _scale_noise(self, size):
+        x = torch.randn(size)
+        return x.sign().mul_(x.abs().sqrt_())
+
+    def reset_noise(self):
+        epsilon_in = self._scale_noise(self.in_features)
+        epsilon_out = self._scale_noise(self.out_features)
+        self.weight_epsilon.copy_(epsilon_out.ger(epsilon_in))
+        self.bias_epsilon.copy_(epsilon_out)
+
+    def forward(self, x):
+        if self.training:
+            weight = self.weight_mu + self.weight_sigma * self.weight_epsilon
+            bias = self.bias_mu + self.bias_sigma * self.bias_epsilon
+        else:
+            weight = self.weight_mu
+            bias = self.bias_mu
+        return F.linear(x, weight, bias)
+
+
 class DQN(nn.Module):
-    def __init__(self, num_actions, input_channels=None, input_dim=None):
+    def __init__(self, num_actions, input_channels=None, input_dim=None, dueling=False, noisy=False):
         super(DQN, self).__init__()
+        self.dueling = dueling
+        self.noisy = noisy
+
+        def linear_layer(in_f, out_f):
+            return NoisyLinear(in_f, out_f) if noisy else nn.Linear(in_f, out_f)
+
         if input_channels is not None:
-            self.network = nn.Sequential(
+            self.features = nn.Sequential(
                 nn.Conv2d(input_channels, 32, kernel_size=8, stride=4),
                 nn.ReLU(),
                 nn.Conv2d(32, 64, kernel_size=4, stride=2),
@@ -38,26 +90,57 @@ class DQN(nn.Module):
                 nn.Conv2d(64, 64, kernel_size=3, stride=1),
                 nn.ReLU(),
                 nn.Flatten(),
-                nn.Linear(64 * 7 * 7, 512),
-                nn.ReLU(),
-                nn.Linear(512, num_actions),
             )
+            feature_dim = 64 * 7 * 7
             self.is_cnn = True
         else:
             in_dim = input_dim if input_dim is not None else 4
-            self.network = nn.Sequential(
-                nn.Linear(in_dim, 128),
+            self.features = nn.Sequential(
+                linear_layer(in_dim, 128),
                 nn.ReLU(),
-                nn.Linear(128, 128),
+                linear_layer(128, 128),
                 nn.ReLU(),
-                nn.Linear(128, num_actions),
             )
+            feature_dim = 128
             self.is_cnn = False
+
+        if dueling:
+            # Value stream: estimates V(s)
+            self.value_stream = nn.Sequential(
+                linear_layer(feature_dim, 512),
+                nn.ReLU(),
+                linear_layer(512, 1),
+            )
+            # Advantage stream: estimates A(s,a)
+            self.advantage_stream = nn.Sequential(
+                linear_layer(feature_dim, 512),
+                nn.ReLU(),
+                linear_layer(512, num_actions),
+            )
+        else:
+            self.fc = nn.Sequential(
+                linear_layer(feature_dim, 512),
+                nn.ReLU(),
+                linear_layer(512, num_actions),
+            )
 
     def forward(self, x):
         if self.is_cnn:
             x = x / 255.0
-        return self.network(x)
+        features = self.features(x)
+
+        if self.dueling:
+            value = self.value_stream(features)
+            advantage = self.advantage_stream(features)
+            # Q(s,a) = V(s) + A(s,a) - mean(A(s,:))
+            return value + (advantage - advantage.mean(dim=1, keepdim=True))
+        else:
+            return self.fc(features)
+
+    def reset_noise(self):
+        for m in self.modules():
+            if isinstance(m, NoisyLinear):
+                m.reset_noise()
 
 
 class AtariPreprocessor:
@@ -67,7 +150,9 @@ class AtariPreprocessor:
 
     def preprocess(self, obs):
         gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-        resized = cv2.resize(gray, (84, 84), interpolation=cv2.INTER_AREA)
+        # Crop out scoreboard (top) and bottom border
+        cropped = gray[34:194, :]   # keeps main gameplay area
+        resized = cv2.resize(cropped, (84, 84), interpolation=cv2.INTER_AREA)
         return resized
 
     def reset(self, obs):
@@ -96,7 +181,7 @@ class UniformReplayBuffer:
         return states, actions, rewards, next_states, dones, indices, weights
 
     def update_priorities(self, indices, errors):
-        pass  # no-op for uniform buffer
+        pass
 
     def __len__(self):
         return len(self.buffer)
@@ -130,11 +215,9 @@ class PrioritizedReplayBuffer:
         priorities = self.priorities[:len(self.buffer)]
         probs = priorities / priorities.sum()
         indices = np.random.choice(len(self.buffer), batch_size, p=probs, replace=False)
-
         weights = (len(self.buffer) * probs[indices]) ** (-self.beta)
         weights /= weights.max()
         self.beta = min(1.0, self.beta + self.beta_increment)
-
         batch = [self.buffer[i] for i in indices]
         states, actions, rewards, next_states, dones = zip(*batch)
         return states, actions, rewards, next_states, dones, indices, weights.astype(np.float32)
@@ -163,45 +246,49 @@ class DQNAgent:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print("Using device:", self.device)
 
+        # Enhancement flags
+        self.use_double  = args.double_dqn
+        self.use_per     = args.per
+        self.n_step      = args.n_step
+        self.use_huber   = args.huber_loss
+        self.use_dueling = args.dueling_dqn
+        self.reward_clip = args.reward_clip
+        self.use_noisy   = args.noisy_net
+
         if self.is_atari:
-            self.q_net     = DQN(self.num_actions, input_channels=4).to(self.device)
-            self.target_net = DQN(self.num_actions, input_channels=4).to(self.device)
+            self.q_net      = DQN(self.num_actions, input_channels=4, dueling=self.use_dueling, noisy=self.use_noisy).to(self.device)
+            self.target_net = DQN(self.num_actions, input_channels=4, dueling=self.use_dueling, noisy=self.use_noisy).to(self.device)
         else:
-            self.q_net     = DQN(self.num_actions, input_dim=obs_shape[0]).to(self.device)
-            self.target_net = DQN(self.num_actions, input_dim=obs_shape[0]).to(self.device)
+            self.q_net      = DQN(self.num_actions, input_dim=obs_shape[0], dueling=self.use_dueling, noisy=self.use_noisy).to(self.device)
+            self.target_net = DQN(self.num_actions, input_dim=obs_shape[0], dueling=self.use_dueling, noisy=self.use_noisy).to(self.device)
 
         self.q_net.apply(init_weights)
         self.target_net.load_state_dict(self.q_net.state_dict())
         self.target_net.eval()
         self.optimizer = optim.Adam(self.q_net.parameters(), lr=args.lr)
 
-        # --- Enhancement flags ---
-        self.use_double  = args.double_dqn
-        self.use_per     = args.per
-        self.n_step      = args.n_step
-
-        # --- Replay buffer ---
+        # Replay buffer
         if self.use_per:
             self.memory = PrioritizedReplayBuffer(capacity=args.memory_size)
         else:
             self.memory = UniformReplayBuffer(capacity=args.memory_size)
 
-        # --- N-step buffer ---
+        # N-step buffer
         self.n_step_buffer = deque(maxlen=self.n_step)
 
-        self.batch_size             = args.batch_size
-        self.gamma                  = args.discount_factor
-        self.epsilon                = args.epsilon_start
-        self.epsilon_decay          = args.epsilon_decay
-        self.epsilon_min            = args.epsilon_min
-        self.env_count              = 0
-        self.train_count            = 0
-        self.best_reward            = -21
-        self.max_episode_steps      = args.max_episode_steps
-        self.replay_start_size      = args.replay_start_size
+        self.batch_size              = args.batch_size
+        self.gamma                   = args.discount_factor
+        self.epsilon                 = args.epsilon_start
+        self.epsilon_decay           = args.epsilon_decay
+        self.epsilon_min             = args.epsilon_min
+        self.env_count               = 0
+        self.train_count             = 0
+        self.best_reward             = -21
+        self.max_episode_steps       = args.max_episode_steps
+        self.replay_start_size       = args.replay_start_size
         self.target_update_frequency = args.target_update_frequency
-        self.train_per_step         = args.train_per_step
-        self.save_dir               = args.save_dir
+        self.train_per_step          = args.train_per_step
+        self.save_dir                = args.save_dir
         os.makedirs(self.save_dir, exist_ok=True)
 
         # Milestone checkpoints for Task 3
@@ -214,7 +301,6 @@ class DQNAgent:
         return np.asarray(obs, dtype=np.float32)
 
     def _get_n_step_transition(self):
-        """Compute n-step return from the n_step_buffer."""
         init_state, init_action = self.n_step_buffer[0][0], self.n_step_buffer[0][1]
         n_step_return = sum(
             self.gamma ** i * self.n_step_buffer[i][2]
@@ -225,7 +311,7 @@ class DQNAgent:
         return (init_state, init_action, n_step_return, final_next_state, final_done)
 
     def select_action(self, state):
-        if random.random() < self.epsilon:
+        if not self.use_noisy and random.random() < self.epsilon:
             return random.randint(0, self.num_actions - 1)
         state_tensor = torch.from_numpy(np.array(state)).float().unsqueeze(0).to(self.device)
         with torch.no_grad():
@@ -242,9 +328,18 @@ class DQNAgent:
             self.n_step_buffer.clear()
 
             while not done and step_count < self.max_episode_steps:
+                # Resample noise before making a step
+                if self.use_noisy:
+                    self.q_net.reset_noise()
+
                 action = self.select_action(state)
                 next_obs, reward, terminated, truncated, _ = self.env.step(action)
                 done = terminated or truncated
+
+                # Reward clipping
+                if self.reward_clip:
+                    reward = np.clip(reward, -1, 1)
+
                 next_state = self._obs_to_state(next_obs)
 
                 self.n_step_buffer.append((state, action, reward, next_state, float(done)))
@@ -275,7 +370,7 @@ class DQNAgent:
                         "Epsilon": self.epsilon,
                     })
 
-            # Flush remaining n-step buffer at episode end
+            # Flush remaining n-step buffer
             while len(self.n_step_buffer) > 0:
                 self.memory.add(self._get_n_step_transition())
                 self.n_step_buffer.popleft()
@@ -293,7 +388,7 @@ class DQNAgent:
                     self.best_reward = eval_reward
                     path = os.path.join(self.save_dir, "best_model.pt")
                     torch.save(self.q_net.state_dict(), path)
-                    print(f"New best: {eval_reward} → {path}")
+                    print(f"New best: {eval_reward} -> {path}")
                 print(f"[TrueEval] Ep:{ep} EvalReward:{eval_reward:.2f} SC:{self.env_count}")
                 wandb.log({
                     "Env Step Count": self.env_count,
@@ -302,6 +397,7 @@ class DQNAgent:
 
     def evaluate(self, num_episodes=10):
         total = 0
+        self.q_net.eval() # Set to eval mode to use the deterministic weights from NoisyNet
         for _ in range(num_episodes):
             obs, _ = self.test_env.reset()
             state = self._obs_to_state(obs, reset=True)
@@ -316,11 +412,17 @@ class DQNAgent:
                 ep_reward += reward
                 state = self._obs_to_state(next_obs)
             total += ep_reward
+        self.q_net.train() # Revert to train mode
         return total / num_episodes
 
     def train(self):
         if len(self.memory) < self.replay_start_size:
             return
+
+        # Resample noise before making a train pass
+        if self.use_noisy:
+            self.q_net.reset_noise()
+            self.target_net.reset_noise()
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
@@ -339,20 +441,19 @@ class DQNAgent:
 
         with torch.no_grad():
             if self.use_double:
-                # Double DQN: online net selects action, target net evaluates
                 next_actions = self.q_net(next_states).argmax(1, keepdim=True)
                 next_q = self.target_net(next_states).gather(1, next_actions).squeeze(1)
             else:
-                # Vanilla DQN: target net max
                 next_q = self.target_net(next_states).max(dim=1)[0]
-
             target = rewards + (self.gamma ** self.n_step) * next_q * (1.0 - dones)
 
         td_errors = q_values - target
-        # MSE loss weighted by IS weights (weights=1 for uniform buffer)
-        if args.huber_loss:
-            loss = (weights * F.smooth_l1_loss(q_values, target, reduction='none')).mean()
+
+        if self.use_huber:
+            # Huber loss (smooth L1) — clips large TD errors
+            loss = (weights * F.smooth_l1_loss(q_values, target.detach(), reduction='none')).mean()
         else:
+            # Weighted MSE
             loss = (weights * td_errors ** 2).mean()
 
         self.optimizer.zero_grad()
@@ -360,7 +461,6 @@ class DQNAgent:
         nn.utils.clip_grad_norm_(self.q_net.parameters(), max_norm=10.0)
         self.optimizer.step()
 
-        # Update PER priorities
         if self.use_per and indices is not None:
             self.memory.update_priorities(indices, td_errors.abs().detach().cpu().numpy())
 
@@ -383,6 +483,7 @@ if __name__ == "__main__":
     parser.add_argument("--env-name",    type=str,   default="ALE/Pong-v5")
     parser.add_argument("--save-dir",    type=str,   default="./results_enhanced")
     parser.add_argument("--wandb-run-name", type=str, default="pong-enhanced")
+    parser.add_argument("--wandb-project",  type=str, default="DLP-Lab5-DQN-CartPole")
     parser.add_argument("--batch-size",  type=int,   default=32)
     parser.add_argument("--memory-size", type=int,   default=200_000)
     parser.add_argument("--lr",          type=float, default=0.00025)
@@ -400,11 +501,15 @@ if __name__ == "__main__":
     parser.add_argument("--double-dqn",  action="store_true", default=False)
     parser.add_argument("--per",         action="store_true", default=False)
     parser.add_argument("--n-step",      type=int,            default=1)
+    parser.add_argument("--huber-loss",  action="store_true", default=False)
+    parser.add_argument("--dueling-dqn", action="store_true", default=False)
+    parser.add_argument("--reward-clip", action="store_true", default=False)
+    parser.add_argument("--noisy-net",   action="store_true", default=False)
 
     args = parser.parse_args()
 
     wandb.init(
-        project="DLP-Lab5-DQN-Enhanced",
+        project=args.wandb_project,
         name=args.wandb_run_name,
         save_code=True,
         config=vars(args)

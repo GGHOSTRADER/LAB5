@@ -1,3 +1,17 @@
+# Python cache
 __pycache__/
+*.pyc
+
+# Experiment outputs
+results/
+results_*/
+
+# Weights & Biases logs
+wandb/
+
+# Evaluation videos
 eval_videos/
 eval_videos_cartpole/
+
+# OS / misc
+.DS_Store
