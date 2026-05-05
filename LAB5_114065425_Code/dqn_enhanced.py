@@ -149,7 +149,7 @@ class DQN(nn.Module):
             if isinstance(m, NoisyLinear):
                 m.reset_noise()
 
-
+# 1)$ Preprocessing FOR CNN
 class AtariPreprocessor:
     def __init__(self, frame_stack=4):
         self.frame_stack = frame_stack

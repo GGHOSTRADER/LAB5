@@ -70,7 +70,7 @@ class DQN(nn.Module):
             x = x / 255.0  
         return self.network(x)
 
-
+# 5)$ Preprocessing FOR CNN
 class AtariPreprocessor:
     """
         Preprocesing the state input of DQN for Atari
@@ -143,7 +143,7 @@ class DQNAgent:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print("Using device:", self.device)
 
-        # Instantiate Q-networks with correct branch
+        # 2)$ Instantiate Q-networks( ONLINE AND TARGET Networks) with correct branch
         if self.is_atari:
             self.q_net = DQN(self.num_actions, input_channels=4).to(self.device)
             self.target_net = DQN(self.num_actions, input_channels=4).to(self.device)
@@ -175,7 +175,9 @@ class DQNAgent:
         self.save_dir = args.save_dir
         os.makedirs(self.save_dir, exist_ok=True)
 
+    
     def _obs_to_state(self, obs, reset=False):
+        # 5)$  Router Preprocessing FOR CNN 
         """Preprocess observation for both CartPole (passthrough) and Atari (frame stack)."""
         if self.is_atari:
             return self.preprocessor.reset(obs) if reset else self.preprocessor.step(obs)
@@ -216,6 +218,7 @@ class DQNAgent:
 
                 if self.env_count % 1000 == 0:                 
                     print(f"[Collect] Ep: {ep} Step: {step_count} SC: {self.env_count} UC: {self.train_count} Eps: {self.epsilon:.4f}")
+                    # 4)$ LOGGING
                     wandb.log({
                         "Episode": ep,
                         "Step Count": step_count,
@@ -229,6 +232,7 @@ class DQNAgent:
                     ########## END OF YOUR CODE ##########   
 
             print(f"[Eval] Ep: {ep} Total Reward: {total_reward} SC: {self.env_count} UC: {self.train_count} Eps: {self.epsilon:.4f}")
+            # 4)$ LOGGING
             wandb.log({
                 "Episode": ep,
                 "Total Reward": total_reward,
@@ -284,13 +288,13 @@ class DQNAgent:
         if len(self.memory) < self.replay_start_size:
             return 
         
-        # Decay function for epsilon-greedy exploration
+        # 1)$ epsilon-greedy exploration
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
         self.train_count += 1
        
         ########## YOUR CODE HERE (<5 lines) ##########
-        # Sample a mini-batch of (s,a,r,s',done) from the replay buffer
+        # 3)$ UNIFORM SAMPLINGS
         batch = random.sample(self.memory, self.batch_size)
         states, actions, rewards, next_states, dones = zip(*batch)
         ########## END OF YOUR CODE ##########
@@ -323,6 +327,7 @@ class DQNAgent:
 
         if self.train_count % 1000 == 0:
             print(f"[Train #{self.train_count}] Loss: {loss.item():.4f} Q mean: {q_values.mean().item():.3f} std: {q_values.std().item():.3f}")
+            # 4)$ LOGGING
             wandb.log({
                 "Loss": loss.item(),
                 "Q mean": q_values.mean().item(),
@@ -351,6 +356,7 @@ if __name__ == "__main__":
     parser.add_argument("--episodes", type=int, default=3000)
     args = parser.parse_args()
 
+    # 4)$ ininitate connection for logging
     wandb.init(project="DLP-Lab5-DQN-CartPole", name=args.wandb_run_name, save_code=True, config=vars(args))
     agent = DQNAgent(env_name=args.env_name, args=args)
     agent.run(episodes=args.episodes)
