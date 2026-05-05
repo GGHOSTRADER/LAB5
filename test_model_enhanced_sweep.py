@@ -4,7 +4,6 @@ import torch.nn.functional as F
 import numpy as np
 import gymnasium as gym
 import cv2
-import imageio
 import ale_py
 import os
 import math
@@ -110,8 +109,27 @@ class AtariPreprocessor:
         self.frames.append(frame)
         return np.stack(self.frames, axis=0)
 
-# --- 4. Evaluation Loop ---
-def evaluate(args):
+# --- 4. Run a single episode for a given seed ---
+def run_episode(env, model, preprocessor, device, seed):
+    obs, _ = env.reset(seed=seed)
+    state = preprocessor.reset(obs)
+    done = False
+    total_reward = 0
+
+    while not done:
+        state_tensor = torch.from_numpy(state).float().unsqueeze(0).to(device)
+        with torch.no_grad():
+            action = model(state_tensor).argmax().item()
+
+        next_obs, reward, terminated, truncated, _ = env.step(action)
+        done = terminated or truncated
+        total_reward += reward
+        state = preprocessor.step(next_obs)
+
+    return total_reward
+
+# --- 5. Sweep Loop with Rolling Window ---
+def sweep(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     env = gym.make("ALE/Pong-v5", render_mode="rgb_array")
     preprocessor = AtariPreprocessor()
@@ -121,52 +139,75 @@ def evaluate(args):
     model.eval()
 
     os.makedirs(args.output_dir, exist_ok=True)
-    all_rewards = []
 
-    for i in range(args.episodes):
-        seed = args.seed_start + i
-        obs, _ = env.reset(seed=seed)
-        state = preprocessor.reset(obs)
-        done = False
-        total_reward = 0
-        frames = []
+    seeds = list(range(args.seed_start, args.seed_end + 1))
+    print(f"Evaluating seeds {args.seed_start}..{args.seed_end} ({len(seeds)} seeds)\n")
 
-        while not done:
-            if args.save_video:
-                frames.append(env.render())
-
-            state_tensor = torch.from_numpy(state).float().unsqueeze(0).to(device)
-            with torch.no_grad():
-                action = model(state_tensor).argmax().item()
-
-            next_obs, reward, terminated, truncated, _ = env.step(action)
-            done = terminated or truncated
-            total_reward += reward
-            state = preprocessor.step(next_obs)
-
-        all_rewards.append(total_reward)
-        print(f"Environment steps: {args.env_steps}, seed: {seed}, eval reward: {int(total_reward)}")
-
-        if args.save_video:
-            out_path = os.path.join(args.output_dir, f"eval_seed{seed}.mp4")
-            imageio.mimsave(out_path, frames, fps=30)
+    # --- Step 1: evaluate every seed once ---
+    rewards_by_seed = {}
+    for seed in seeds:
+        r = run_episode(env, model, preprocessor, device, seed)
+        rewards_by_seed[seed] = r
+        print(f"Environment steps: {args.env_steps}, seed: {seed}, eval reward: {int(r)}")
 
     env.close()
-    print(f"Average reward: {np.mean(all_rewards):.2f}")
 
-# --- 5. Main Entry Point ---
+    # --- Step 2: rolling window of size W ---
+    W = args.window
+    if len(seeds) < W:
+        print(f"\nNot enough seeds ({len(seeds)}) for a window of {W}.")
+        return
+
+    windows = []  # list of (start_seed, end_seed, avg, rewards_list)
+    for i in range(len(seeds) - W + 1):
+        window_seeds = seeds[i:i + W]
+        window_rewards = [rewards_by_seed[s] for s in window_seeds]
+        avg = float(np.mean(window_rewards))
+        windows.append((window_seeds[0], window_seeds[-1], avg, window_rewards))
+
+    # --- Step 3: print all windows + identify best ---
+    print("\n" + "=" * 60)
+    print(f"Rolling average (window size {W}):")
+    print("=" * 60)
+    for start, end, avg, _ in windows:
+        print(f"  seeds {start:3d}..{end:3d}  avg reward: {avg:.2f}")
+
+    best = max(windows, key=lambda w: w[2])
+    worst = min(windows, key=lambda w: w[2])
+
+    print("\n" + "=" * 60)
+    print(f"BEST window:  seeds {best[0]}..{best[1]}  avg reward: {best[2]:.2f}")
+    print(f"  per-seed rewards: {[int(r) for r in best[3]]}")
+    print(f"\nWorst window: seeds {worst[0]}..{worst[1]}  avg reward: {worst[2]:.2f}")
+    print(f"  per-seed rewards: {[int(r) for r in worst[3]]}")
+
+    # --- Step 4: save CSV ---
+    csv_path = os.path.join(args.output_dir, "rolling_window_results.csv")
+    with open(csv_path, "w") as f:
+        f.write("start_seed,end_seed,avg_reward\n")
+        for start, end, avg, _ in windows:
+            f.write(f"{start},{end},{avg:.4f}\n")
+    print(f"\nFull window results saved to: {csv_path}")
+
+    seeds_csv = os.path.join(args.output_dir, "per_seed_results.csv")
+    with open(seeds_csv, "w") as f:
+        f.write("seed,reward\n")
+        for seed in seeds:
+            f.write(f"{seed},{int(rewards_by_seed[seed])}\n")
+    print(f"Per-seed rewards saved to:    {seeds_csv}")
+
+# --- 6. Main Entry Point ---
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-path", type=str, required=True)
-    parser.add_argument("--output-dir", type=str, default="./eval_videos")
-    parser.add_argument("--episodes", type=int, default=20)
-    parser.add_argument("--seed-start", type=int, default=0,
-                        help="Starting seed; evaluates seeds [seed_start, seed_start + episodes - 1]")
-    parser.add_argument("--env-steps", type=int, default=20000000,
-                        help="Environment step count to display in log lines")
-    parser.add_argument("--save-video", action="store_true")
+    parser.add_argument("--output-dir", type=str, default="./sweep_results")
+    parser.add_argument("--seed-start", type=int, default=1, help="First seed (inclusive)")
+    parser.add_argument("--seed-end", type=int, default=100, help="Last seed (inclusive)")
+    parser.add_argument("--window", type=int, default=20,
+                        help="Rolling window size (number of sequential seeds to average)")
+    parser.add_argument("--env-steps", type=int, default=20000000)
     parser.add_argument("--dueling", action="store_true")
     parser.add_argument("--noisy", action="store_true")
 
     args = parser.parse_args()
-    evaluate(args)
+    sweep(args)

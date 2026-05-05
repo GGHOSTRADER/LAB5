@@ -26,7 +26,7 @@ def init_weights(m):
         if m.bias is not None:
             nn.init.constant_(m.bias, 0)
 
-
+# 7)$ Noisy Net
 class NoisyLinear(nn.Module):
     def __init__(self, in_features, out_features, std_init=0.5):
         super(NoisyLinear, self).__init__()
@@ -51,7 +51,8 @@ class NoisyLinear(nn.Module):
         self.weight_sigma.data.fill_(self.std_init / math.sqrt(self.in_features))
         self.bias_mu.data.uniform_(-mu_range, mu_range)
         self.bias_sigma.data.fill_(self.std_init / math.sqrt(self.out_features))
-
+    
+    # 7)$ Applies a transformation Instead of GN 
     def _scale_noise(self, size):
         x = torch.randn(size)
         return x.sign().mul_(x.abs().sqrt_())
@@ -62,6 +63,8 @@ class NoisyLinear(nn.Module):
         self.weight_epsilon.copy_(epsilon_out.ger(epsilon_in))
         self.bias_epsilon.copy_(epsilon_out)
 
+
+    # 7)$ Noise is Applied to the action, mathematical formula applied
     def forward(self, x):
         if self.training:
             weight = self.weight_mu + self.weight_sigma * self.weight_epsilon
@@ -80,7 +83,7 @@ class DQN(nn.Module):
 
         def linear_layer(in_f, out_f):
             return NoisyLinear(in_f, out_f) if noisy else nn.Linear(in_f, out_f)
-        # DL NN ARCHITECTURES 
+        # 1)$ DL NN ARCHITECTURES 
             # CNN
         if input_channels is not None:
             self.features = nn.Sequential(
@@ -105,15 +108,15 @@ class DQN(nn.Module):
             )
             feature_dim = 128
             self.is_cnn = False
-
+        # 8)$ Dueling DQN
         if dueling:
-            # Value stream: estimates V(s)
+            # 8)$Value stream: estimates V(s) this learns "Is this a good situation?"
             self.value_stream = nn.Sequential(
                 linear_layer(feature_dim, 512),
                 nn.ReLU(),
                 linear_layer(512, 1),
             )
-            # Advantage stream: estimates A(s,a)
+            #  8)$ Advantage stream: estimates A(s,a) "Which move is relatively better?"
             self.advantage_stream = nn.Sequential(
                 linear_layer(feature_dim, 512),
                 nn.ReLU(),
@@ -132,11 +135,13 @@ class DQN(nn.Module):
         features = self.features(x)
 
         if self.dueling:
+            # 8)$ Calculate Value and Advantage
             value = self.value_stream(features)
             advantage = self.advantage_stream(features)
-            # Q(s,a) = V(s) + A(s,a) - mean(A(s,:))
+            # 8)$ Q(s,a) = V(s) + A(s,a) - mean(A(s,:))
             return value + (advantage - advantage.mean(dim=1, keepdim=True))
         else:
+            # Normal DQN head
             return self.fc(features)
 
     def reset_noise(self):
@@ -152,8 +157,8 @@ class AtariPreprocessor:
 
     def preprocess(self, obs):
         gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-        # Crop out scoreboard (top) and bottom border
-        cropped = gray[34:194, :]   # keeps main gameplay area
+        # Crop out border and scoreboard to keep gameplay area
+        cropped = gray[34:194, :]   
         resized = cv2.resize(cropped, (84, 84), interpolation=cv2.INTER_AREA)
         return resized
 
@@ -188,7 +193,7 @@ class UniformReplayBuffer:
     def __len__(self):
         return len(self.buffer)
 
-# SMART STORAGE PER
+# 4)$ SMART STORAGE PER
 class PrioritizedReplayBuffer:
     """
         Prioritizing the samples in the replay memory by the Bellman error
@@ -205,6 +210,7 @@ class PrioritizedReplayBuffer:
         self.pos = 0
 
     def add(self, transition):
+        # 4)$  Priority
         priority = self.max_priority
         if len(self.buffer) < self.capacity:
             self.buffer.append(transition)
@@ -215,6 +221,7 @@ class PrioritizedReplayBuffer:
 
     def sample(self, batch_size):
         priorities = self.priorities[:len(self.buffer)]
+        # 4)$  Probability
         probs = priorities / priorities.sum()
         indices = np.random.choice(len(self.buffer), batch_size, p=probs, replace=False)
         weights = (len(self.buffer) * probs[indices]) ** (-self.beta)
@@ -227,6 +234,7 @@ class PrioritizedReplayBuffer:
     def update_priorities(self, indices, errors):
         for idx, error in zip(indices, errors):
             if idx < len(self.buffer):
+                # Refinement
                 p = (abs(error) + 1e-5) ** self.alpha
                 self.priorities[idx] = p
                 self.max_priority = max(self.max_priority, p)
@@ -269,13 +277,14 @@ class DQNAgent:
         self.target_net.eval()
         self.optimizer = optim.Adam(self.q_net.parameters(), lr=args.lr)
 
-        # Replay buffer
+        #  Replay buffer
         if self.use_per:
+            # 4)$ PER Use at In agent loop
             self.memory = PrioritizedReplayBuffer(capacity=args.memory_size)
         else:
             self.memory = UniformReplayBuffer(capacity=args.memory_size)
 
-        # N-step buffer
+        #5)$ N-step buffer
         self.n_step_buffer = deque(maxlen=self.n_step)
 
         self.batch_size              = args.batch_size
@@ -293,7 +302,7 @@ class DQNAgent:
         self.save_dir                = args.save_dir
         os.makedirs(self.save_dir, exist_ok=True)
 
-        # Milestone checkpoints for Task 3
+        # Milestone checkpoints Logging
         self.milestones = {600_000, 1_000_000, 1_500_000, 2_000_000, 2_500_000}
         self.saved_milestones = set()
 
@@ -302,6 +311,7 @@ class DQNAgent:
             return self.preprocessor.reset(obs) if reset else self.preprocessor.step(obs)
         return np.asarray(obs, dtype=np.float32)
 
+    # 5)$ N-step return calculation
     def _get_n_step_transition(self):
         init_state, init_action = self.n_step_buffer[0][0], self.n_step_buffer[0][1]
         n_step_return = sum(
@@ -329,11 +339,12 @@ class DQNAgent:
             step_count = 0
             self.n_step_buffer.clear()
 
+            
             while not done and step_count < self.max_episode_steps:
                 # Resample noise before making a step
                 if self.use_noisy:
                     self.q_net.reset_noise()
-
+                # 2)$ Bellman Error components Calculation
                 action = self.select_action(state)
                 next_obs, reward, terminated, truncated, _ = self.env.step(action)
                 done = terminated or truncated
@@ -344,6 +355,7 @@ class DQNAgent:
 
                 next_state = self._obs_to_state(next_obs)
 
+                # 5)$ Router of N-steps and wait for buffer to fill
                 self.n_step_buffer.append((state, action, reward, next_state, float(done)))
                 if len(self.n_step_buffer) == self.n_step:
                     self.memory.add(self._get_n_step_transition())
@@ -366,6 +378,7 @@ class DQNAgent:
 
                 if self.env_count % 1000 == 0:
                     print(f"[Collect] Ep:{ep} SC:{self.env_count} UC:{self.train_count} Eps:{self.epsilon:.4f}")
+                    # 9)$ Logging to WandB
                     wandb.log({
                         "Env Step Count": self.env_count,
                         "Update Count": self.train_count,
@@ -378,6 +391,7 @@ class DQNAgent:
                 self.n_step_buffer.popleft()
 
             print(f"[Eval] Ep:{ep} Reward:{total_reward} SC:{self.env_count} Eps:{self.epsilon:.4f}")
+            # 9)$ Logging to WandB
             wandb.log({
                 "Episode": ep,
                 "Total Reward": total_reward,
@@ -392,6 +406,7 @@ class DQNAgent:
                     torch.save(self.q_net.state_dict(), path)
                     print(f"New best: {eval_reward} -> {path}")
                 print(f"[TrueEval] Ep:{ep} EvalReward:{eval_reward:.2f} SC:{self.env_count}")
+                # 9)$ Logging to WandB
                 wandb.log({
                     "Env Step Count": self.env_count,
                     "Eval Reward": eval_reward,
@@ -441,9 +456,10 @@ class DQNAgent:
 
         q_values = self.q_net(states).gather(1, actions.unsqueeze(1)).squeeze(1)
 
+        # 2)$ Bellman Error calculation of Target
         with torch.no_grad():
             if self.use_double:
-                # Double DQN: Online network(q_net)  chooses the best action for the next state
+                # 3)$ Double DQN: Online network(q_net)  chooses the best action for the next state
                 next_actions = self.q_net(next_states).argmax(1, keepdim=True)
                 # Target network estimates the value of that specific action
                 next_q = self.target_net(next_states).gather(1, next_actions).squeeze(1)
@@ -454,6 +470,7 @@ class DQNAgent:
 
         td_errors = q_values - target
 
+        # 6)$ HUBER LOSS CALLED FROM Pytorch 
         if self.use_huber:
             # Huber loss (smooth L1) — clips large TD errors
             loss = (weights * F.smooth_l1_loss(q_values, target.detach(), reduction='none')).mean()
@@ -474,6 +491,7 @@ class DQNAgent:
 
         if self.train_count % 1000 == 0:
             print(f"[Train #{self.train_count}] Loss:{loss.item():.4f} Q mean:{q_values.mean().item():.3f}")
+            # 9)$ Logging to WandB
             wandb.log({
                 "Loss": loss.item(),
                 "Q mean": q_values.mean().item(),
@@ -513,6 +531,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    # 9)$ Connection of WandB
     wandb.init(
         project=args.wandb_project,
         name=args.wandb_run_name,

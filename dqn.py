@@ -38,7 +38,7 @@ class DQN(nn.Module):
         super(DQN, self).__init__()
         ########## YOUR CODE HERE (5~10 lines) ##########
         if input_channels is not None:
-            # CNN branch: Atari stacked grayscale frames (Nature DQN architecture)
+            # CNN branch: Atari stacked grayscale frames
             self.network = nn.Sequential(
                 nn.Conv2d(input_channels, 32, kernel_size=8, stride=4),
                 nn.ReLU(),
@@ -67,7 +67,7 @@ class DQN(nn.Module):
 
     def forward(self, x):
         if self.is_cnn:
-            x = x / 255.0  # normalize frames [0,255] -> [0,1]
+            x = x / 255.0  
         return self.network(x)
 
 
@@ -133,7 +133,7 @@ class DQNAgent:
         self.test_env = gym.make(env_name, render_mode="rgb_array")
         self.num_actions = self.env.action_space.n
 
-        # Auto-detect env type from observation space shape
+        
         # Atari: (H, W, C) = 3D   CartPole: (4,) = 1D
         obs_shape = self.env.observation_space.shape
         self.is_atari = len(obs_shape) == 3
@@ -156,7 +156,7 @@ class DQNAgent:
         self.target_net.eval()
         self.optimizer = optim.Adam(self.q_net.parameters(), lr=args.lr)
 
-        # Uniform replay buffer (Task 1 & 2); swap for PrioritizedReplayBuffer in Task 3
+        # Uniform replay buffer (Task 1 & 2)
         self.memory = deque(maxlen=args.memory_size)
 
         self.batch_size = args.batch_size
@@ -224,7 +224,7 @@ class DQNAgent:
                         "Epsilon": self.epsilon
                     })
                     ########## YOUR CODE HERE  ##########
-                    # Add additional wandb logs for debugging if needed 
+                     
                     
                     ########## END OF YOUR CODE ##########   
 
@@ -237,7 +237,7 @@ class DQNAgent:
                 "Epsilon": self.epsilon
             })
             ########## YOUR CODE HERE  ##########
-            # Add additional wandb logs for debugging if needed 
+            
             
             ########## END OF YOUR CODE ##########  
 
@@ -307,7 +307,7 @@ class DQNAgent:
         # Implement the loss function of DQN and the gradient updates
         with torch.no_grad():
             next_q = self.target_net(next_states).max(dim=1)[0]
-            target = rewards + self.gamma * next_q * (1.0 - dones)
+            target = rewards + self.gamma * next_q * (1.0 - dones) #  BELLMAN 
 
         # MSE loss as per handout equation (1): L = 1/2 * (target - Q(s,a))^2
         loss = F.mse_loss(q_values, target)
